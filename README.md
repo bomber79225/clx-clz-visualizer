@@ -12,13 +12,13 @@
 - 資料不送伺服器，前端本機處理
 
 ## 啟動
-本 GitHub 專案的 `index.html` 是可直接部署的完整單頁版，已內嵌費率、CSS 和 JavaScript；不需要額外的 JSON 或建置流程。可選擇在專案目錄啟動靜態伺服器，例如：
+下載所有檔案到同一資料夾，以靜態伺服器啟動，例如：
 
 ```bash
 python -m http.server 8080
 ```
 
-在瀏覽器開啟 `http://localhost:8080`。此 GitHub 版已內嵌費率資料，毋須額外 fetch；建議以 HTTPS 進行圖片剪貼簿操作。
+在瀏覽器開啟 `http://localhost:8080`。請勿直接以 `file://` 開啟，因為 `rates.json` 使用 fetch 載入。
 
 圖片複製依賴 `html2canvas` CDN 及瀏覽器剪貼簿權限；若無法複製，會改成下載 PNG。
 
@@ -32,9 +32,12 @@ python -m http.server 8080
 ## 部署
 這個純靜態網站可直接以 Vercel `Other` / 靜態專案形式部署，不需要 npm、API 或後端。
 
-GitHub 上的 `index.html` 為實際部署用來源；原始開發版有拆分成 `app.js`、`styles.css`、`rates.json` 等檔，正式持續開發時可再將拆分版納入版本控制。
-
 ## 來源
 - 官方商品頁：https://www.fubon.com/life/product/personal/medical/CLX
 - 官方商品頁：https://www.fubon.com/life/product/personal/medical/CLZ
 - 使用者提供之兩份建議書：CLX V1.2 1150824、CLZ V1.1 1150824
+
+## V1.1 更新
+- 保額預設100萬元，可輸入50～300萬元，以1萬元為單位；所有保障與保費同步換算。
+- 文案編輯框上方新增「客戶姓名」「年繳保費」等中文快速插入按鈕，依目前游標位置插入變數。
+- 對外發送前應再次確認現行條款與商品招攬規範。
