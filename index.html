@@ -3,43 +3,294 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0f2844" />
+  <meta name="theme-color" content="#21415f" />
   <meta name="description" content="CLX／CLZ 癌症保障可視化試算，一眼看懂給付金額、年繳保費與總繳保費。" />
   <title>癌症保障，一眼看懂｜CLX／CLZ</title>
   <style>
-:root{--ink:#132d46;--muted:#607588;--cyan:#0b94b1;--line:#dbe7ee;--card:#fff;--bg:#f2f7fa}*{box-sizing:border-box}html{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;color:var(--ink)}body{margin:0;background:var(--bg)}button,input,textarea{font:inherit}.topbar{background:#10283f;color:#fff;padding:18px 24px}.topbar-inner{max-width:1270px;margin:auto;display:flex;gap:12px;align-items:center}.brand-icon{border:2px solid #64d7dc;border-radius:12px;color:#64d7dc;font-weight:900;font-size:27px;display:grid;place-items:center;width:46px;height:46px}.eyebrow{letter-spacing:.12em;color:#a8c9d5;font-size:11px;margin:0 0 3px}.topbar h1{font-size:19px;margin:0;font-weight:850;letter-spacing:.01em}.version{font-size:10px;border:1px solid #55738a;padding:2px 6px;vertical-align:middle;border-radius:20px;color:#a5cfda}.shell{max-width:1320px;margin:auto;padding:28px 24px 60px}.intro{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:22px}.intro h2{font-size:22px;line-height:1.35;margin:0 0 7px;letter-spacing:-.03em}.intro p{color:var(--muted);margin:0;font-size:13px}.small-tag{white-space:nowrap;font-size:11px;background:#dfedf3;color:#387188;padding:8px 14px;border-radius:20px;font-weight:850}.workspace{display:grid;grid-template-columns:minmax(330px,410px) minmax(0,1fr);gap:22px;align-items:start}.sidebar,.results{display:grid;gap:20px}.panel{border:1px solid #e4edf2;border-radius:21px;background:#fff;padding:22px;box-shadow:0 8px 24px rgba(18,44,64,.05)}.panel-title{display:flex;align-items:center;gap:10px}.panel-title h3{font-size:17px;margin:0;font-weight:850}.step{background:#e7f7fa;color:#05889f;font-size:11px;font-weight:900;width:28px;height:28px;border-radius:9px;display:grid;place-items:center}.field{display:flex;flex-direction:column;gap:8px;margin-top:18px;font-weight:750;font-size:13px}.field span{display:block}.field small{float:right;color:#94a6b1;font-weight:500}.field input,.field textarea{padding:13px 14px;border-radius:12px;border:1px solid var(--line);outline:0;background:#f8fbfc;width:100%;font-size:15px;color:#183548}.field input:focus,#template:focus{border-color:#22adc5;box-shadow:0 0 0 3px #d9f3f7}.field em{font-style:normal;color:#81929d;font-size:10px;line-height:1.5}.segmented{display:flex;gap:7px;background:#eff4f6;padding:5px;border-radius:12px}.seg{flex:1;border:0;background:none;border-radius:9px;padding:11px 7px;color:#7e909d;font-weight:800;cursor:pointer;font-size:13px}.seg.active{background:#fff;color:#078dab;box-shadow:0 2px 8px #112e3e19}.info-row{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:#407589;font-size:11px;margin-top:9px;font-weight:800}.fixed-coverage{margin-top:18px;background:#f0f9fb;padding:13px 14px;border-radius:12px;font-size:12px;color:#537e8b;display:flex;align-items:center;gap:7px;flex-wrap:wrap}.fixed-coverage strong{font-size:19px;color:#0d7995}.fixed-coverage span{flex-basis:100%;color:#839ca8;font-size:10px}.status{margin-top:13px;font-size:12px;color:#157963;line-height:1.55;padding:12px;background:#e9f8f2;border-radius:11px}.status.error{background:#fff1e9;color:#ad4a21}.source-note{font-size:11px;color:#8ca0ae;line-height:1.7;margin:12px 2px 0}.hint{font-size:12px;color:#738796;line-height:1.6}#template{font-size:12.5px;line-height:1.75;border:1px solid var(--line);border-radius:12px;padding:15px;width:100%;min-height:215px;resize:vertical;color:#335063;background:#f8fbfc;outline:0}.token-hint{font-size:10px;line-height:1.7;color:#899ca6;overflow-wrap:anywhere}.results-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:17px}.live-dot{font-size:11px;color:#158e74;font-weight:800}.live-dot:before{content:"";display:inline-block;background:#2ccca0;width:7px;height:7px;border-radius:50%;margin-right:7px}.card-container{max-width:735px;margin:auto}.insurance-card{background:#122b45;border-radius:24px;padding:30px;overflow:hidden;color:#fff;width:100%;box-shadow:0 16px 28px rgba(21,55,75,.13)}.card-header{display:flex;justify-content:space-between;align-items:center;gap:10px}.card-brand{font-size:13px;letter-spacing:.1em;font-weight:900;color:#76d9e3}.card-brand span{letter-spacing:0;font-size:10px;font-weight:500;color:#a6bbca;margin-left:5px}.card-product{padding:6px 10px;border:1px solid #456680;border-radius:30px;color:#bedce5;font-size:11px;white-space:nowrap}.card-title{font-size:31px;font-weight:900;line-height:1.25;letter-spacing:-.04em;margin:24px 0 10px}.card-title span{color:#64d7dc;margin-left:9px}.card-meta{font-size:11px;color:#b4cbd8;line-height:1.6;padding-bottom:18px;border-bottom:1px solid #36516a}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:18px}.hero-box{border-radius:16px;background:#f9fcfd;color:#173c58;padding:20px 16px 17px;display:flex;flex-direction:column;min-height:157px}.hero-box.accent{background:#dcf8f5}.hero-label{font-size:12px;font-weight:850;line-height:1.55;min-height:38px}.hero-value{font-size:68px;line-height:1.1;letter-spacing:-.06em;font-weight:950;white-space:nowrap;margin-top:4px}.hero-box.accent .hero-value{color:#057e83}.hero-value span{font-size:18px;margin-left:4px;letter-spacing:0}.hero-note{font-size:11px;font-weight:800;color:#54788d;margin-top:auto;line-height:1.5}.hero-box.accent .hero-note{color:#287a7d}.small-title{font-size:14px;font-weight:850;color:#e3f3f7;margin:25px 0 12px}.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.perk{display:flex;flex-direction:column;gap:5px;border:1px solid #426076;background:#1b3853;border-radius:13px;padding:12px 10px 13px}.perk-icon{font-size:17px;color:#67d9de}.perk span{font-size:11px;color:#bed1dc;line-height:1.55}.perk strong{font-size:25px;line-height:1.35;font-weight:900;color:#fff;white-space:nowrap}.return-note{display:flex;align-items:center;gap:8px;border-radius:10px;margin:15px 0 19px;color:#d1e0e8;font-size:11px;line-height:1.6}.return-icon{font-size:18px;color:#6ad8d7}.premium-row{display:grid;grid-template-columns:1fr 1fr;padding:18px 0;gap:15px;border-top:1px solid #426078;border-bottom:1px solid #426078}.premium-row>div{display:flex;flex-direction:column;gap:6px}.premium-row>div+div{border-left:1px solid #426078;padding-left:20px}.premium-row span{font-size:12px;color:#a2c1ce}.premium-row strong{font-size:24px;line-height:1.25;color:#fff;font-weight:900;white-space:nowrap}.card-legal{font-size:10px;color:#a5bdcc;line-height:1.65;margin-top:17px}.card-footer{display:flex;justify-content:space-between;gap:12px;font-size:9px;color:#779eb3;margin-top:15px}.actions{display:flex;gap:10px;margin-top:16px}.actions button{flex:1}.primary-action,.secondary-action,.small-action{cursor:pointer;border-radius:11px;font-weight:800;border:0;padding:12px 16px;font-size:13px;transition:transform .15s}.primary-action:active,.secondary-action:active,.small-action:active{transform:scale(.98)}.primary-action,.small-action{color:white;background:#067fa0}.secondary-action{background:#e9f4f7;color:#116f86}.small-action{font-size:11px;padding:9px 13px;white-space:nowrap}.actions button:disabled,.small-action:disabled{opacity:.45;cursor:not-allowed}.action-status{font-size:12px;color:#0b7e6d;margin-top:10px;min-height:0}.message-preview{background:#f3f8fa;white-space:pre-wrap;font-size:13px;line-height:1.8;border-radius:12px;padding:20px;color:#3b5b6b;overflow-wrap:anywhere}.disclaimer{color:#839baa;font-size:11px;line-height:1.8;padding:0 6px}@media(max-width:990px){.workspace{grid-template-columns:1fr}.sidebar{grid-template-columns:1fr 1fr}.results{max-width:760px;margin:auto;width:100%}}@media(max-width:680px){.shell{padding:20px 10px 40px}.topbar{padding:12px 15px}.intro{padding:0 6px}.intro h2{font-size:17px}.intro p{font-size:11px}.small-tag{display:none}.sidebar{grid-template-columns:1fr;gap:12px}.panel{border-radius:16px;padding:15px}.results{gap:13px}.insurance-card{padding:20px 14px;border-radius:17px}.card-title{font-size:25px;margin:20px 0 8px}.card-brand{font-size:11px}.card-brand span{font-size:9px}.card-product{font-size:10px;padding:5px 8px}.card-meta{font-size:10px}.hero-grid{gap:8px}.hero-box{padding:13px 9px;min-height:139px}.hero-label{font-size:10px;min-height:33px}.hero-value{font-size:52px}.hero-value span{font-size:12px;margin-left:2px}.hero-note{font-size:9px}.perks{gap:6px}.perk{padding:10px 6px}.perk span{font-size:9px;min-height:25px}.perk strong{font-size:19px}.small-title{margin:18px 0 10px}.premium-row{gap:8px}.premium-row>div+div{padding-left:12px}.premium-row strong{font-size:19px}.card-legal{font-size:9px}.actions{gap:7px}.actions button{font-size:12px;padding:11px}.card-footer{font-size:8px}}@media(max-width:360px){.hero-value{font-size:44px}.hero-box{min-height:146px}.perk strong{font-size:17px}.premium-row strong{font-size:16px}}@media print{body{background:#fff}.topbar,.intro,.sidebar,.results-head,.actions,.message-preview,.disclaimer{display:none!important}.workspace{display:block}.results .panel{box-shadow:none;border:0;padding:0}.insurance-card{box-shadow:none;print-color-adjust:exact;-webkit-print-color-adjust:exact}}
-
-/* v1.1 editable coverage and accessible quick-insert token buttons */
+:root{
+  --ink:#1e3550;
+  --ink-soft:#52697e;
+  --teal:#108ca1;
+  --teal-deep:#0d7388;
+  --mint:#dff5f2;
+  --warm:#fffaf3;
+  --warm-deep:#f4d9ae;
+  --rose:#ffefe6;
+  --rose-deep:#ffb586;
+  --line:#d9e5ec;
+  --card:#ffffff;
+  --bg:#eef5f7;
+  --panel-shadow:0 10px 28px rgba(25,56,82,.06);
+}
+*{box-sizing:border-box}
+html{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;color:var(--ink)}
+body{margin:0;background:linear-gradient(180deg,#f6fafb 0%,#edf3f6 100%)}
+button,input,textarea{font:inherit}
+.topbar{background:linear-gradient(135deg,#213b57 0%,#274768 100%);color:#fff;padding:18px 24px;box-shadow:0 6px 18px rgba(27,51,72,.12)}
+.topbar-inner{max-width:1320px;margin:auto;display:flex;gap:12px;align-items:center}
+.brand-icon{border:2px solid #8ce2e6;border-radius:14px;color:#8ce2e6;font-weight:900;font-size:27px;display:grid;place-items:center;width:48px;height:48px;background:rgba(255,255,255,.04)}
+.eyebrow{letter-spacing:.12em;color:#bbd8e3;font-size:11px;margin:0 0 3px}
+.topbar h1{font-size:19px;margin:0;font-weight:850;letter-spacing:.01em}
+.version{font-size:10px;border:1px solid rgba(255,255,255,.25);padding:2px 6px;vertical-align:middle;border-radius:20px;color:#d3edf3}
+.shell{max-width:1340px;margin:auto;padding:28px 24px 60px}
+.intro{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:22px}
+.intro h2{font-size:24px;line-height:1.35;margin:0 0 7px;letter-spacing:-.03em}
+.intro p{color:var(--ink-soft);margin:0;font-size:13px}
+.small-tag{white-space:nowrap;font-size:11px;background:#dff0f4;color:#376a79;padding:8px 14px;border-radius:20px;font-weight:850}
+.workspace{display:grid;grid-template-columns:minmax(340px,430px) minmax(0,1fr);gap:22px;align-items:start}
+.sidebar,.results{display:grid;gap:20px}
+.panel{border:1px solid #e4edf2;border-radius:22px;background:#fff;padding:22px;box-shadow:var(--panel-shadow)}
+.panel-title{display:flex;align-items:center;gap:10px}.panel-title h3{font-size:17px;margin:0;font-weight:850}
+.step{background:#e8f7fa;color:#0a8aa2;font-size:11px;font-weight:900;width:28px;height:28px;border-radius:9px;display:grid;place-items:center}
+.field{display:flex;flex-direction:column;gap:8px;margin-top:18px;font-weight:750;font-size:13px}.field span{display:block}.field small{float:right;color:#94a6b1;font-weight:500}
+.field input,.field textarea{padding:13px 14px;border-radius:12px;border:1px solid var(--line);outline:0;background:#f8fbfc;width:100%;font-size:15px;color:#183548}
+.field input:focus,#template:focus{border-color:#22adc5;box-shadow:0 0 0 3px #d9f3f7}.field em{font-style:normal;color:#81929d;font-size:10px;line-height:1.5}
+.segmented{display:flex;gap:7px;background:#eff4f6;padding:5px;border-radius:12px}.seg{flex:1;border:0;background:none;border-radius:9px;padding:11px 7px;color:#7e909d;font-weight:800;cursor:pointer;font-size:13px}.seg.active{background:#fff;color:#078dab;box-shadow:0 2px 8px rgba(17,46,62,.1)}
+.info-row{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:#407589;font-size:11px;margin-top:9px;font-weight:800}
 .coverage-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:#f8fbfc;overflow:hidden}
-.coverage-input input{border:0!important;border-radius:0!important;box-shadow:none!important;min-width:0;flex:1;font-weight:850;font-size:21px;padding:12px 14px}
+.coverage-input input{border:0!important;border-radius:0!important;box-shadow:none!important;min-width:0;flex:1;font-weight:850;font-size:24px;padding:12px 14px;background:transparent}
 .coverage-input>span{flex:none;color:#597e8b;font-size:13px;padding:0 16px;font-weight:800}
+.status{margin-top:13px;font-size:12px;color:#0f7e67;line-height:1.55;padding:12px;background:#e9f8f2;border-radius:11px}.status.error{background:#fff1e9;color:#ad4a21}
+.source-note{font-size:11px;color:#8ca0ae;line-height:1.7;margin:12px 2px 0}
+.editor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-top:6px}
+.hint{font-size:12px;color:#738796;line-height:1.6;margin:0}
+.ghost-action{cursor:pointer;border:1px solid #cfe0e8;border-radius:10px;background:#fff;color:#517082;padding:9px 12px;font-size:12px;font-weight:800;white-space:nowrap}
+.ghost-action:hover{background:#f4fafc}
 .tokens-title{color:#456c80;font-weight:850;font-size:12px;margin:15px 0 9px}
 .token-buttons{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
-.token-buttons button{border:1px solid #c3e3ed;border-radius:9px;background:#eaf8fb;color:#136f85;padding:8px 10px;font-size:12px;font-weight:800;cursor:pointer;touch-action:manipulation;transition:background .15s}
+.token-buttons button{border:1px solid #c3e3ed;border-radius:10px;background:#eaf8fb;color:#136f85;padding:8px 10px;font-size:12px;font-weight:800;cursor:pointer;touch-action:manipulation;transition:background .15s}
 .token-buttons button:hover{background:#d8f1f7}
 .token-buttons button:active{transform:translateY(1px)}
 .token-buttons button:focus-visible{outline:2px solid #0b8dad;outline-offset:2px}
-.hero-value b{font:inherit;font-weight:950}
-@media(max-width:680px){.token-buttons{gap:6px}.token-buttons button{padding:9px 10px;font-size:12px}.coverage-input input{font-size:20px}}
+#template{font-size:13px;line-height:1.75;border:1px solid var(--line);border-radius:14px;padding:15px;width:100%;min-height:230px;resize:vertical;color:#335063;background:#f8fbfc;outline:0}
+.draft-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
+.token-hint{font-size:10px;line-height:1.7;color:#899ca6;overflow-wrap:anywhere;margin:0}
+.draft-status{font-size:11px;color:#567786;background:#edf6f8;border-radius:999px;padding:7px 10px;white-space:nowrap}
+.results-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:17px}.live-dot{font-size:11px;color:#158e74;font-weight:800}.live-dot:before{content:"";display:inline-block;background:#2ccca0;width:7px;height:7px;border-radius:50%;margin-right:7px}
+.card-container{max-width:770px;margin:auto}
+.insurance-card{background:linear-gradient(180deg,#fffdf8 0%,#ffffff 100%);border:1px solid #ebe6da;border-radius:28px;padding:28px;color:var(--ink);width:100%;box-shadow:0 20px 36px rgba(55,85,112,.09);overflow:hidden}
+.card-topline{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.card-branding{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.brand-chip{display:inline-flex;align-items:center;border-radius:999px;padding:7px 11px;background:#e6f5f7;color:#0a8298;font-weight:900;font-size:11px;letter-spacing:.1em}
+.card-product{padding:7px 11px;border:1px solid #dde6eb;border-radius:999px;color:#597180;font-size:11px;background:#fff}
+.card-kicker{font-size:11px;color:#8a99a5;font-weight:800;white-space:nowrap;padding-top:2px}
+.card-title-wrap{margin:20px 0 14px}
+.card-title{font-size:34px;font-weight:950;line-height:1.2;letter-spacing:-.05em;color:#183246}
+.card-meta{font-size:11px;color:#798d9d;line-height:1.7;margin-top:8px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.hero-box{position:relative;min-height:238px;border-radius:22px;padding:16px 18px 18px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.cancer-box{background:linear-gradient(180deg,#eef7fb 0%,#ffffff 100%);border:1px solid #d9ebf4}
+.special-box{background:linear-gradient(180deg,#fff3e9 0%,#ffffff 100%);border:1px solid #f7dfca}
+.hero-caption{font-size:14px;font-weight:900;line-height:1.45;color:#365168;max-width:70%}
+.hero-corner{position:absolute;right:16px;top:16px;max-width:34%;text-align:right;font-size:11px;line-height:1.35;font-weight:900;color:#7b91a2}
+.hero-value{display:flex;align-items:flex-end;gap:6px;line-height:1;letter-spacing:-.08em;margin-top:auto}
+.hero-value b{font-size:128px;font-weight:950;color:#1f4666}
+.special-box .hero-value b{color:#d86d28}
+.hero-value span{font-size:24px;font-weight:900;letter-spacing:0;padding-bottom:18px;color:#4b6679}
+.focus-strip{margin-top:16px;padding:16px 0 2px}
+.focus-strip-title{font-size:13px;color:#536f80;font-weight:900;margin-bottom:10px}
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.perk{border-radius:16px;background:#f5f9fb;border:1px solid #e1ebf0;padding:14px 14px 16px;display:flex;flex-direction:column;gap:6px;min-height:112px;justify-content:space-between}
+.perk span{font-size:11px;color:#657d8e;line-height:1.5;font-weight:800}
+.perk strong{font-size:34px;line-height:1.05;font-weight:950;color:#173b5a;letter-spacing:-.05em;white-space:nowrap}
+.return-note{display:flex;align-items:center;gap:8px;border-radius:14px;margin:15px 0 19px;background:#f7fafb;border:1px solid #e7eef1;padding:11px 14px;color:#5a7180;font-size:11px;line-height:1.6}.return-icon{font-size:18px;color:#56a8b1}
+.premium-row{display:grid;grid-template-columns:1fr 1fr;padding:18px 0;gap:15px;border-top:1px solid #e7edf0;border-bottom:1px solid #e7edf0}.premium-row>div{display:flex;flex-direction:column;gap:8px}.premium-row>div+div{border-left:1px solid #e7edf0;padding-left:20px}.premium-row span{font-size:12px;color:#718696;font-weight:800}.premium-row strong{font-size:30px;line-height:1.1;color:#18364c;font-weight:950;letter-spacing:-.04em;white-space:nowrap}
+.card-legal{font-size:10px;color:#8295a4;line-height:1.68;margin-top:17px}.card-footer{display:flex;justify-content:space-between;gap:12px;font-size:9px;color:#95a8b6;margin-top:15px}
+.actions{display:flex;gap:10px;margin-top:16px}.actions button{flex:1}.primary-action,.secondary-action,.small-action{cursor:pointer;border-radius:12px;font-weight:800;border:0;padding:12px 16px;font-size:13px;transition:transform .15s}.primary-action:active,.secondary-action:active,.small-action:active{transform:scale(.98)}.primary-action,.small-action{color:white;background:#0a86a1}.secondary-action{background:#e9f4f7;color:#116f86}.small-action{font-size:11px;padding:9px 13px;white-space:nowrap}.actions button:disabled,.small-action:disabled,.ghost-action:disabled{opacity:.45;cursor:not-allowed}.action-status{font-size:12px;color:#0b7e6d;margin-top:10px;min-height:0}.message-preview{background:#f3f8fa;white-space:pre-wrap;font-size:13px;line-height:1.8;border-radius:14px;padding:20px;color:#3b5b6b;overflow-wrap:anywhere}.disclaimer{color:#839baa;font-size:11px;line-height:1.8;padding:0 6px}
+
+@media(max-width:1080px){.workspace{grid-template-columns:1fr}.sidebar{grid-template-columns:1fr 1fr}.results{max-width:820px;margin:auto;width:100%}}
+@media(max-width:720px){.shell{padding:20px 10px 40px}.topbar{padding:12px 15px}.intro{padding:0 6px}.intro h2{font-size:18px}.intro p{font-size:11px}.small-tag{display:none}.sidebar{grid-template-columns:1fr;gap:12px}.panel{border-radius:18px;padding:16px}.insurance-card{padding:18px 14px;border-radius:20px}.card-title{font-size:26px}.card-meta{font-size:10px}.hero-grid{gap:9px}.hero-box{min-height:190px;padding:14px 12px}.hero-caption{font-size:12px;max-width:68%}.hero-corner{font-size:9px;right:12px;top:12px}.hero-value b{font-size:92px}.hero-value span{font-size:18px;padding-bottom:10px}.perks{gap:7px}.perk{padding:12px 10px;min-height:98px}.perk strong{font-size:24px}.premium-row{gap:8px}.premium-row>div+div{padding-left:12px}.premium-row strong{font-size:21px}.card-legal{font-size:9px}.actions{gap:7px}.actions button{font-size:12px;padding:11px}.card-footer{font-size:8px}.draft-row{flex-direction:column;align-items:flex-start}.editor-head{flex-direction:column;align-items:flex-start}.token-buttons{gap:6px}.token-buttons button{padding:9px 10px;font-size:12px}.coverage-input input{font-size:21px}}
+@media(max-width:420px){.hero-grid{grid-template-columns:1fr}.hero-box{min-height:170px}.hero-caption{max-width:100%;padding-right:90px}.hero-corner{max-width:90px}.hero-value b{font-size:88px}.perks{grid-template-columns:1fr 1fr}.perk:last-child{grid-column:1/-1}.premium-row{grid-template-columns:1fr}.premium-row>div+div{border-left:0;padding-left:0;border-top:1px solid #e7edf0;padding-top:14px}}
+@media print{body{background:#fff}.topbar,.intro,.sidebar,.results-head,.actions,.message-preview,.disclaimer{display:none!important}.workspace{display:block}.results .panel{box-shadow:none;border:0;padding:0}.insurance-card{box-shadow:none;print-color-adjust:exact;-webkit-print-color-adjust:exact}}
 
 </style>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script>window.__embeddedRates={"source":"建議書1150824","premiumPer10k":{"CLX":{"10":{"18":435,"19":440,"20":445,"21":450,"22":455,"23":460,"24":465,"25":470,"26":480,"27":490,"28":500,"29":510,"30":515,"31":525,"32":535,"33":545,"34":555,"35":565,"36":575,"37":580,"38":590,"39":600,"40":610,"41":620,"42":630,"43":640,"44":650,"45":660,"46":670,"47":680,"48":690,"49":700,"50":710,"51":720,"52":730,"53":740,"54":755,"55":765,"56":780,"57":795,"58":825,"59":845,"60":880},"20":{"18":230,"19":235,"20":240,"21":245,"22":250,"23":255,"24":260,"25":265,"26":270,"27":275,"28":280,"29":285,"30":290,"31":295,"32":300,"33":310,"34":315,"35":325,"36":330,"37":335,"38":345,"39":350,"40":355,"41":365,"42":370,"43":380,"44":390,"45":400,"46":410,"47":420,"48":435,"49":450,"50":470}},"CLZ":{"10":{"18":420,"19":430,"20":439,"21":450,"22":461,"23":472,"24":483,"25":494,"26":504,"27":515,"28":526,"29":537,"30":548,"31":562,"32":576,"33":590,"34":604,"35":618,"36":632,"37":646,"38":660,"39":674,"40":688,"41":705,"42":721,"43":738,"44":755,"45":772,"46":788,"47":805,"48":822,"49":838,"50":855,"51":888,"52":922,"53":955,"54":988,"55":1022,"56":1055,"57":1088,"58":1121,"59":1155,"60":1188},"20":{"18":222,"19":228,"20":233,"21":239,"22":246,"23":252,"24":258,"25":265,"26":271,"27":277,"28":283,"29":290,"30":296,"31":306,"32":315,"33":325,"34":334,"35":344,"36":354,"37":363,"38":373,"39":382,"40":392,"41":412,"42":433,"43":453,"44":473,"45":494,"46":514,"47":534,"48":554,"49":575,"50":595}}}};</script>
-<script>
+  <script>window.__RATES = {
+  "source": "建議書1150824",
+  "premiumPer10k": {
+    "CLX": {
+      "10": {
+        "18": 435,
+        "19": 440,
+        "20": 445,
+        "21": 450,
+        "22": 455,
+        "23": 460,
+        "24": 465,
+        "25": 470,
+        "26": 480,
+        "27": 490,
+        "28": 500,
+        "29": 510,
+        "30": 515,
+        "31": 525,
+        "32": 535,
+        "33": 545,
+        "34": 555,
+        "35": 565,
+        "36": 575,
+        "37": 580,
+        "38": 590,
+        "39": 600,
+        "40": 610,
+        "41": 620,
+        "42": 630,
+        "43": 640,
+        "44": 650,
+        "45": 660,
+        "46": 670,
+        "47": 680,
+        "48": 690,
+        "49": 700,
+        "50": 710,
+        "51": 720,
+        "52": 730,
+        "53": 740,
+        "54": 755,
+        "55": 765,
+        "56": 780,
+        "57": 795,
+        "58": 825,
+        "59": 845,
+        "60": 880
+      },
+      "20": {
+        "18": 230,
+        "19": 235,
+        "20": 240,
+        "21": 245,
+        "22": 250,
+        "23": 255,
+        "24": 260,
+        "25": 265,
+        "26": 270,
+        "27": 275,
+        "28": 280,
+        "29": 285,
+        "30": 290,
+        "31": 295,
+        "32": 300,
+        "33": 310,
+        "34": 315,
+        "35": 325,
+        "36": 330,
+        "37": 335,
+        "38": 345,
+        "39": 350,
+        "40": 355,
+        "41": 365,
+        "42": 370,
+        "43": 380,
+        "44": 390,
+        "45": 400,
+        "46": 410,
+        "47": 420,
+        "48": 435,
+        "49": 450,
+        "50": 470
+      }
+    },
+    "CLZ": {
+      "10": {
+        "18": 420,
+        "19": 430,
+        "20": 439,
+        "21": 450,
+        "22": 461,
+        "23": 472,
+        "24": 483,
+        "25": 494,
+        "26": 504,
+        "27": 515,
+        "28": 526,
+        "29": 537,
+        "30": 548,
+        "31": 562,
+        "32": 576,
+        "33": 590,
+        "34": 604,
+        "35": 618,
+        "36": 632,
+        "37": 646,
+        "38": 660,
+        "39": 674,
+        "40": 688,
+        "41": 705,
+        "42": 721,
+        "43": 738,
+        "44": 755,
+        "45": 772,
+        "46": 788,
+        "47": 805,
+        "48": 822,
+        "49": 838,
+        "50": 855,
+        "51": 888,
+        "52": 922,
+        "53": 955,
+        "54": 988,
+        "55": 1022,
+        "56": 1055,
+        "57": 1088,
+        "58": 1121,
+        "59": 1155,
+        "60": 1188
+      },
+      "20": {
+        "18": 222,
+        "19": 228,
+        "20": 233,
+        "21": 239,
+        "22": 246,
+        "23": 252,
+        "24": 258,
+        "25": 265,
+        "26": 271,
+        "27": 277,
+        "28": 283,
+        "29": 290,
+        "30": 296,
+        "31": 306,
+        "32": 315,
+        "33": 325,
+        "34": 334,
+        "35": 344,
+        "36": 354,
+        "37": 363,
+        "38": 373,
+        "39": 382,
+        "40": 392,
+        "41": 412,
+        "42": 433,
+        "43": 453,
+        "44": 473,
+        "45": 494,
+        "46": 514,
+        "47": 534,
+        "48": 554,
+        "49": 575,
+        "50": 595
+      }
+    }
+  }
+};</script>
+  <script defer>
 /* CLX / CLZ visualizer. Rate source: user-provided 115/08/24 official proposal workbooks.
    No customer data is sent to a server; calculations execute in the browser. */
 (() => {
   'use strict';
   const $ = (id) => document.getElementById(id);
+  const STORAGE_KEYS = {
+    template: 'clx_clz_template_v2',
+    profile: 'clx_clz_profile_v2'
+  };
   const state = {gender:'female', term:20, coverageWan:100, rates:null, valid:false, age:null, annual:null, total:null, templateTouched:false};
   const money = n => 'NT$ ' + new Intl.NumberFormat('zh-TW',{maximumFractionDigits:0}).format(n);
-  // The proposal workbooks quote insurance amounts in ten-thousand NTD units.
   const wanNumber = n => new Intl.NumberFormat('zh-TW',{maximumFractionDigits:2}).format(Math.round((n+Number.EPSILON)*100)/100);
   const benefit = factor => `${wanNumber(state.coverageWan*factor)}萬元`;
   const coverageIsValid = n => Number.isInteger(n)&&n>=50&&n<=300;
   const displayCoverage = () => coverageIsValid(state.coverageWan)?`${wanNumber(state.coverageWan)}萬元`:'待確認';
   const config = () => state.gender === 'female' ? {code:'CLX',name:'真馨相守',title:'真馨相守 CLX',salutation:'女士'} : {code:'CLZ',name:'豪愛無憂',title:'豪愛無憂 CLZ',salutation:'先生'};
-  const esc = s => (s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const templateDefault = `您好！
 
 為您整理一份「{PRODUCT}」癌症保障摘要：
@@ -58,7 +309,49 @@
 提醒：癌症等待期90日、疾病等待期30日，第1保單年度癌症給付另有規定；特定癌症額外給付依保單年度遞增，本商品無解約金。詳細給付條件以正式保單條款及建議書為準。
 
 若您想進一步了解，我可以再為您說明。`;
+
   const cleanDate = str => String(str||'').replace(/\D/g,'');
+  function setDraftStatus(message){ const el=$('draftStatus'); if(el) el.textContent=message; }
+  function saveProfile(){
+    try{
+      const payload={ name:$('name').value, birthday:$('birthday').value, coverage:$('coverage').value, gender:state.gender, term:state.term };
+      localStorage.setItem(STORAGE_KEYS.profile, JSON.stringify(payload));
+    }catch(e){}
+  }
+  function saveTemplate(reason='已自動保存最新文案草稿'){ 
+    try{ localStorage.setItem(STORAGE_KEYS.template, $('template').value); setDraftStatus(reason); }
+    catch(e){ setDraftStatus('此瀏覽器目前無法保存草稿'); }
+  }
+  function restoreDrafts(){
+    try{
+      const savedProfile = JSON.parse(localStorage.getItem(STORAGE_KEYS.profile) || 'null');
+      if(savedProfile && typeof savedProfile==='object'){
+        if(typeof savedProfile.name==='string') $('name').value = savedProfile.name;
+        if(typeof savedProfile.birthday==='string') $('birthday').value = savedProfile.birthday;
+        if(typeof savedProfile.coverage==='string' || typeof savedProfile.coverage==='number') $('coverage').value = String(savedProfile.coverage);
+        if(savedProfile.gender==='male' || savedProfile.gender==='female') state.gender = savedProfile.gender;
+        if(savedProfile.term===10 || savedProfile.term===20 || savedProfile.term==='10' || savedProfile.term==='20') state.term = Number(savedProfile.term);
+      }
+      const savedTemplate = localStorage.getItem(STORAGE_KEYS.template);
+      if(savedTemplate && typeof savedTemplate === 'string'){
+        $('template').value = savedTemplate;
+        state.templateTouched = true;
+        setDraftStatus('已載入你上次編輯的文案草稿');
+      } else {
+        $('template').value = templateDefault;
+        setDraftStatus('文案草稿會自動保存在此瀏覽器');
+      }
+    }catch(e){
+      $('template').value = templateDefault;
+      setDraftStatus('文案草稿會自動保存在此瀏覽器');
+    }
+  }
+  function resetTemplate(){
+    $('template').value = templateDefault;
+    state.templateTouched = false;
+    saveTemplate('已恢復預設文案並重新保存');
+    $('messagePreview').textContent = generateMessage();
+  }
   function parseBirthday(value){
     const digits=cleanDate(value);
     let y,m,d;
@@ -75,7 +368,6 @@
     let lastBirthdayYear=t.getFullYear();
     if(t.getMonth()+1<m||(t.getMonth()+1===m&&t.getDate()<d))lastBirthdayYear--;
     const lastBirthday=new Date(lastBirthdayYear,m-1,d);
-    // Match proposal workbook insurance age: more than six calendar months after last birthday rounds up.
     let months=t.getFullYear()*12+t.getMonth()-(lastBirthday.getFullYear()*12+lastBirthday.getMonth());
     const insAge=age+(months>6||(months===6&&t.getDate()>d)?1:0);
     return {age,insAge,birthday:test};
@@ -89,7 +381,7 @@
     const max=state.term===20?50:60;
     const rate=state.rates?.premiumPer10k?.[c.code]?.[String(state.term)]?.[String(state.age)];
     state.valid=Boolean(birthday&&birthday.age>=18&&state.age>=18&&state.age<=max&&allowedCoverage&&typeof rate==='number'&&Number.isFinite(rate));
-    state.annual=state.valid?rate*state.coverageWan:null; // Premium per NT$10,000 × units in wan
+    state.annual=state.valid?rate*state.coverageWan:null;
     state.total=state.valid?state.annual*state.term:null;
     const name=$('name').value.trim()||'示範客戶';
     document.querySelectorAll('[data-gender]').forEach(el=>el.classList.toggle('active',el.dataset.gender===state.gender));
@@ -141,7 +433,7 @@
   async function getCanvas(){
     if(!window.html2canvas) throw Error('圖片轉換元件無法載入，請檢查網路並重新整理。');
     const card=$('insuranceCard');
-    return await window.html2canvas(card,{backgroundColor:'#122b45',scale:2,useCORS:true,logging:false,scrollX:0,scrollY:-window.scrollY,windowWidth:document.documentElement.clientWidth});
+    return await window.html2canvas(card,{backgroundColor:'#ffffff',scale:2,useCORS:true,logging:false,scrollX:0,scrollY:-window.scrollY,windowWidth:document.documentElement.clientWidth});
   }
   const getBlob = async () => {
     const canvas=await getCanvas();
@@ -157,7 +449,6 @@
     const button=$('copyImage');button.disabled=true;button.textContent='產生圖卡中…';
     const blobPromise=getBlob();
     try{
-      // Promise-based ClipboardItem starts clipboard.write during the user gesture (Safari-friendly).
       if(!navigator.clipboard?.write||!window.ClipboardItem)throw Error('Clipboard API unavailable');
       await navigator.clipboard.write([new ClipboardItem({'image/png':blobPromise})]);
       $('imageStatus').textContent='✓ 圖卡已複製，可以直接貼入 LINE。';
@@ -174,12 +465,12 @@
     finally{$('downloadImage').disabled=!state.valid;}
   }
   function init(){
-    $('template').value=templateDefault;
-    // Preserve the text cursor even when the user clicks a token button outside the textarea.
+    restoreDrafts();
     const editor=$('template');
     let caretStart=editor.value.length, caretEnd=editor.value.length;
     const rememberCaret=()=>{caretStart=editor.selectionStart;caretEnd=editor.selectionEnd;};
     ['keyup','click','select','input','mouseup','touchend'].forEach(event=>editor.addEventListener(event,rememberCaret));
+
     document.querySelectorAll('[data-token]').forEach(btn=>{
       btn.addEventListener('mousedown',event=>event.preventDefault());
       btn.addEventListener('click',()=>{
@@ -190,13 +481,20 @@
         editor.dispatchEvent(new Event('input',{bubbles:true}));
       });
     });
-    document.querySelectorAll('[data-gender]').forEach(btn=>btn.addEventListener('click',()=>{state.gender=btn.dataset.gender;compute();}));
-    document.querySelectorAll('[data-term]').forEach(btn=>btn.addEventListener('click',()=>{state.term=Number(btn.dataset.term);compute();}));
-    $('name').addEventListener('input',compute);$('birthday').addEventListener('input',compute);$('coverage').addEventListener('input',compute);
-    $('template').addEventListener('input',()=>{state.templateTouched=true;$('messagePreview').textContent=generateMessage();});
-    $('copyText').addEventListener('click',copyText);$('copyImage').addEventListener('click',copyImage);$('downloadImage').addEventListener('click',downloadImage);
+
+    document.querySelectorAll('[data-gender]').forEach(btn=>btn.addEventListener('click',()=>{state.gender=btn.dataset.gender;saveProfile();compute();}));
+    document.querySelectorAll('[data-term]').forEach(btn=>btn.addEventListener('click',()=>{state.term=Number(btn.dataset.term);saveProfile();compute();}));
+    $('name').addEventListener('input',()=>{saveProfile();compute();});
+    $('birthday').addEventListener('input',()=>{saveProfile();compute();});
+    $('coverage').addEventListener('input',()=>{saveProfile();compute();});
+    $('template').addEventListener('input',()=>{state.templateTouched=true;saveTemplate();$('messagePreview').textContent=generateMessage();});
+    $('resetTemplate').addEventListener('click',resetTemplate);
+    $('copyText').addEventListener('click',copyText);
+    $('copyImage').addEventListener('click',copyImage);
+    $('downloadImage').addEventListener('click',downloadImage);
     compute();
-    Promise.resolve(window.__embeddedRates).then(data=>{
+    const rateSource = window.__RATES ? Promise.resolve(window.__RATES) : fetch('./rates.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();});
+    rateSource.then(data=>{
       if(data?.premiumPer10k?.CLX?.['10']?.['30']!==515||data?.premiumPer10k?.CLZ?.['20']?.['30']!==296)throw Error('費率資料驗證失敗');
       state.rates=data;compute();
     }).catch(err=>{$('status').classList.add('error');$('status').textContent=`無法載入費率表（${err.message}），已停止報價與複製。`;});
@@ -208,10 +506,23 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="topbar-inner"><div class="brand-icon">+</div><div><p class="eyebrow">富邦人壽｜保障視覺化</p><h1>癌症保障提案工具 <span class="version">V1.1</span></h1></div></div>
+    <div class="topbar-inner">
+      <div class="brand-icon">+</div>
+      <div>
+        <p class="eyebrow">富邦人壽｜保障視覺化</p>
+        <h1>癌症保障提案工具 <span class="version">V1.2</span></h1>
+      </div>
+    </div>
   </header>
   <main class="shell">
-    <div class="intro"><div><h2>把複雜條款，整理成客戶看得懂的保障重點。</h2><p>選擇客戶資料，即時產出一張 LINE 可用圖卡與對應的說明文案。</p></div><div class="small-tag">CLX / CLZ</div></div>
+    <div class="intro">
+      <div>
+        <h2>把複雜條款，整理成客戶一眼就懂的保障重點。</h2>
+        <p>以更低認知成本、更清楚視覺層級的方式，快速產出 LINE 可用圖卡與對應說明文案。</p>
+      </div>
+      <div class="small-tag">CLX / CLZ</div>
+    </div>
+
     <div class="workspace">
       <section class="sidebar" aria-label="客戶資料與文案設定">
         <div class="panel">
@@ -225,9 +536,13 @@
           <div id="status" class="status" role="status" aria-live="polite">載入費率中…</div>
           <p class="source-note">保費以115/08/24版 CLX、CLZ 建議書之標準年繳費率計算，未計任何折扣；實際投保以公司正式建議書及核保結果為準。</p>
         </div>
+
         <div class="panel">
           <div class="panel-title"><span class="step">02</span><h3>客戶訊息編輯</h3></div>
-          <p class="hint">文案可以自由修改；預覽會自動代入客戶資訊與保費。</p>
+          <div class="editor-head">
+            <p class="hint">文案可自由修改，系統會自動保存你最後編輯的版本。</p>
+            <button id="resetTemplate" class="ghost-action" type="button">恢復預設文案</button>
+          </div>
           <div class="tokens-title">點一下就插入到文案游標位置</div>
           <div class="token-buttons" id="tokenButtons" role="group" aria-label="快速插入文案變數">
             <button type="button" data-token="NAME">客戶姓名</button>
@@ -244,34 +559,73 @@
             <button type="button" data-token="TERM">繳費年期</button>
           </div>
           <textarea id="template" spellcheck="false" rows="12" aria-label="客戶推廣文案模板"></textarea>
-          <p class="token-hint">以上按鈕會插入動態欄位，修改客戶資料或保額後，文案預覽與圖卡會一起更新。</p>
+          <div class="draft-row">
+            <p class="token-hint">修改客戶資料或保額後，文案預覽與圖卡會一起更新。</p>
+            <div id="draftStatus" class="draft-status" role="status" aria-live="polite">文案草稿會自動保存在此瀏覽器。</div>
+          </div>
         </div>
       </section>
+
       <section class="results" aria-label="保障圖卡與訊息預覽">
         <div class="panel results-panel">
           <div class="results-head"><div class="panel-title"><span class="step">03</span><h3>客戶保障圖卡</h3></div><span class="live-dot">即時預覽</span></div>
           <div class="card-container">
             <article id="insuranceCard" class="insurance-card" aria-label="CLX CLZ 保障摘要圖卡">
-              <div class="card-header"><div class="card-brand">FUBON LIFE <span>保障規劃示意</span></div><div id="cardProduct" class="card-product">CLX 真馨相守</div></div>
-              <div class="card-title">癌症保障<span>一眼看懂</span></div>
-              <div id="cardMeta" class="card-meta">示範客戶｜女性｜30歲｜20年繳｜以100萬元保額試算</div>
-              <div class="hero-grid"><div class="hero-box"><span class="hero-label">首次罹患癌症（重度）</span><div class="hero-value"><b id="cardCancerNum">100</b><span>萬元</span></div><span class="hero-note">第2保單年度起</span></div><div class="hero-box accent"><span class="hero-label">首次罹患特定癌症（重度）</span><div class="hero-value"><b id="cardSpecialNum">150</b><span>萬元</span></div><span class="hero-note">第6保單年度起，最高合計</span></div></div>
-              <div class="small-title">還有這些保障</div>
-              <div class="perks"><div class="perk"><div class="perk-icon">✦</div><span>初期／輕度癌症</span><strong id="cardInitial">10萬元</strong></div><div class="perk"><div class="perk-icon">✚</div><span>特定手術</span><strong id="cardSurgery">2萬元</strong></div><div class="perk"><div class="perk-icon">✧</div><span>特定傷病</span><strong id="cardDisease">10萬元</strong></div></div>
+              <div class="card-topline">
+                <div class="card-branding">
+                  <div class="brand-chip">FUBON LIFE</div>
+                  <div id="cardProduct" class="card-product">CLX 真馨相守</div>
+                </div>
+                <div class="card-kicker">癌症保障重點整理</div>
+              </div>
+              <div class="card-title-wrap">
+                <div class="card-title">一張圖，看懂這份保障</div>
+                <div id="cardMeta" class="card-meta">示範客戶｜女性｜30歲｜20年繳｜以100萬元保額試算</div>
+              </div>
+
+              <div class="hero-grid">
+                <div class="hero-box cancer-box">
+                  <div class="hero-caption">首次罹患癌症（重度）</div>
+                  <div class="hero-corner">第2保單年度起</div>
+                  <div class="hero-value"><b id="cardCancerNum">100</b><span>萬</span></div>
+                </div>
+                <div class="hero-box special-box">
+                  <div class="hero-caption">首次罹患特定癌症（重度）</div>
+                  <div class="hero-corner">第6保單年度起・最高合計</div>
+                  <div class="hero-value"><b id="cardSpecialNum">150</b><span>萬</span></div>
+                </div>
+              </div>
+
+              <div class="focus-strip">
+                <div class="focus-strip-title">另外還有這些保障</div>
+                <div class="perks">
+                  <div class="perk"><span>初期／輕度癌症</span><strong id="cardInitial">10萬元</strong></div>
+                  <div class="perk"><span>特定手術</span><strong id="cardSurgery">2萬元</strong></div>
+                  <div class="perk"><span>特定傷病</span><strong id="cardDisease">10萬元</strong></div>
+                </div>
+              </div>
+
               <div class="return-note"><span class="return-icon">♡</span><span>身故或保險年齡屆滿89歲，另有依條款計算之給付</span></div>
-              <div class="premium-row"><div><span>年繳保費</span><strong id="cardAnnual">NT$ 29,000</strong></div><div><span>預計總繳保費</span><strong id="cardTotal">NT$ 580,000</strong></div></div>
-              <div class="card-legal">*初期／輕度癌症及特定傷病給付為第2保單年度起；特定手術依條款。癌症等待期90日、疾病等待期30日。第1保單年度癌症給付另有規定；特定癌症加給依保單年度遞增，第6年度起最高合計<span id="cardSpecialLegal">150萬元</span>。無解約金；身故／滿期給付須扣除依條款應申領的保險金。<br/>本圖僅為上述試算保額之摘要示意，給付條件、除外責任及實際費率以正式保單條款、建議書與核保結果為準。</div>
+
+              <div class="premium-row">
+                <div><span>年繳保費</span><strong id="cardAnnual">NT$ 29,000</strong></div>
+                <div><span>預計總繳保費</span><strong id="cardTotal">NT$ 580,000</strong></div>
+              </div>
+
+              <div class="card-legal">* 初期／輕度癌症及特定傷病給付為第2保單年度起；特定手術依條款。癌症等待期90日、疾病等待期30日。第1保單年度癌症給付另有規定；特定癌症加給依保單年度遞增，第6年度起最高合計<span id="cardSpecialLegal">150萬元</span>。無解約金；身故／滿期給付須扣除依條款應申領的保險金。<br/>本圖僅為上述試算保額之摘要示意，給付條件、除外責任及實際費率以正式保單條款、建議書與核保結果為準。</div>
               <div class="card-footer"><span id="cardSource">CLX 真馨相守｜100萬元保額</span><span>FUBON LIFE · 商品摘要</span></div>
             </article>
           </div>
           <div class="actions"><button id="copyImage" class="primary-action" type="button">📸 複製圖片</button><button id="downloadImage" class="secondary-action" type="button">下載 PNG</button></div>
           <div id="imageStatus" class="action-status" role="status" aria-live="polite"></div>
         </div>
+
         <div class="panel">
           <div class="results-head"><div class="panel-title"><span class="step">04</span><h3>LINE 訊息預覽</h3></div><button id="copyText" class="small-action" type="button">複製文案</button></div>
           <div id="messagePreview" class="message-preview"></div>
           <div id="textStatus" class="action-status" role="status" aria-live="polite"></div>
         </div>
+
         <div class="disclaimer"><strong>業務提醒：</strong>此工具為客戶溝通用保障摘要，並非公司核定之正式商品 DM 或建議書。使用前請核對現行商品條款、費率、核保及招攬規範，勿將未核保結果視為承保承諾。</div>
       </section>
     </div>
