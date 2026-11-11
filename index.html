@@ -113,6 +113,26 @@ button,input,textarea{font:inherit}
 @media(max-width:720px){.hero-box{min-height:217px}.hero-caption{font-size:12px}.hero-corner{font-size:10.5px}.perk{min-height:110px}}
 @media(max-width:420px){.hero-box{min-height:198px}.hero-value b{font-size:108px}.hero-corner{font-size:11px}.perk strong{font-size:34px}}
 
+
+.export-hint{font-size:11px;line-height:1.6;color:#6a8393;margin:9px 0 0;text-align:center}
+/* Export layout: every device creates the SAME compact, two-column LINE image. */
+.export-card{width:780px!important;min-width:780px!important;max-width:780px!important;padding:26px!important;transform:none!important}
+.export-card .card-title{font-size:35px!important}
+.export-card .card-meta{font-size:12px!important}
+.export-card .hero-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}
+.export-card .hero-box{min-height:229px!important;padding:16px 17px 17px!important}
+.export-card .hero-caption{font-size:14px!important}
+.export-card .hero-value b{font-size:144px}
+.export-card .hero-value span{font-size:28px!important;padding-bottom:16px!important}
+.export-card .hero-corner{font-size:12px!important;margin-top:4px!important}
+.export-card .perks{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important}
+.export-card .perk{min-height:106px!important;padding:12px 10px 13px!important;grid-column:auto!important}
+.export-card .perk strong{font-size:43px!important}
+.export-card .premium-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:15px!important}
+.export-card .premium-row>div+div{border-top:0!important;border-left:1px solid #e7edf0!important;padding-top:0!important;padding-left:20px!important}
+.export-card .premium-row strong{font-size:28px!important}
+.export-card .card-legal{font-size:11px!important;line-height:1.66!important}
+.export-card .card-footer{font-size:9px!important}
 </style>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>window.__RATES = {
@@ -462,10 +482,44 @@ button,input,textarea{font:inherit}
       $('textStatus').textContent='✓ 文案已複製，可以直接貼到 LINE。';
     }catch(e){$('textStatus').textContent='無法直接複製，請選取上方文案手動複製。';}
   }
+  // Export must not inherit a phone's one-column media queries: the shared image is always 780px wide.
+  const EXPORT_CARD_WIDTH = 780;
+  function fitExportNumbers(card, doc){
+    const view=doc.defaultView;
+    card.querySelectorAll('.hero-value').forEach(group=>{
+      const amount=group.querySelector('b');
+      const unit=group.querySelector('span');
+      const box=group.closest('.hero-box');
+      if(!amount||!unit||!box||!view)return;
+      amount.style.fontSize=''; // Remove any inline fit calculated for the narrow live preview.
+      const style=view.getComputedStyle(box);
+      const available=box.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight);
+      const range=doc.createRange();range.selectNodeContents(amount);
+      const textWidth=range.getBoundingClientRect().width;
+      const unitWidth=unit.getBoundingClientRect().width;
+      if(available>0&&textWidth+unitWidth+6>available){
+        const base=parseFloat(view.getComputedStyle(amount).fontSize);
+        const scaled=Math.max(58,Math.floor(base*(available-unitWidth-6)/textWidth)-3);
+        amount.style.fontSize=scaled+'px';
+      }
+    });
+  }
   async function getCanvas(){
     if(!window.html2canvas) throw Error('圖片轉換元件無法載入，請檢查網路並重新整理。');
     const card=$('insuranceCard');
-    return await window.html2canvas(card,{backgroundColor:'#ffffff',scale:2,useCORS:true,logging:false,scrollX:0,scrollY:-window.scrollY,windowWidth:document.documentElement.clientWidth});
+    return await window.html2canvas(card,{
+      backgroundColor:'#ffffff',scale:2,useCORS:true,logging:false,
+      scrollX:0,scrollY:-window.scrollY,windowWidth:1200,
+      onclone:doc=>{
+        const cloned=doc.getElementById('insuranceCard');
+        cloned.classList.add('export-card');
+        cloned.style.width=EXPORT_CARD_WIDTH+'px';
+        cloned.style.minWidth=EXPORT_CARD_WIDTH+'px';
+        cloned.style.maxWidth=EXPORT_CARD_WIDTH+'px';
+        cloned.style.transform='none';
+        fitExportNumbers(cloned,doc);
+      }
+    });
   }
   const getBlob = async () => {
     const canvas=await getCanvas();
@@ -543,7 +597,7 @@ button,input,textarea{font:inherit}
       <div class="brand-icon">+</div>
       <div>
         <p class="eyebrow">富邦人壽｜保障視覺化</p>
-        <h1>癌症保障提案工具 <span class="version">V1.2.2</span></h1>
+        <h1>癌症保障提案工具 <span class="version">V1.2.3</span></h1>
       </div>
     </div>
   </header>
@@ -649,6 +703,7 @@ button,input,textarea{font:inherit}
               <div class="card-footer"><span id="cardSource">CLX 真馨相守｜100萬元保額</span><span>富邦人壽 · 保障重點摘要</span></div>
             </article>
           </div>
+          <p class="export-hint">複製或下載的圖片一律使用精簡雙欄圖卡，不會因手機畫面變窄而變成長圖。</p>
           <div class="actions"><button id="copyImage" class="primary-action" type="button">📸 複製圖片</button><button id="downloadImage" class="secondary-action" type="button">下載 PNG</button></div>
           <div id="imageStatus" class="action-status" role="status" aria-live="polite"></div>
         </div>
