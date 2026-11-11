@@ -9,6 +9,19 @@
   <style>
 :root{--ink:#132d46;--muted:#607588;--cyan:#0b94b1;--line:#dbe7ee;--card:#fff;--bg:#f2f7fa}*{box-sizing:border-box}html{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;color:var(--ink)}body{margin:0;background:var(--bg)}button,input,textarea{font:inherit}.topbar{background:#10283f;color:#fff;padding:18px 24px}.topbar-inner{max-width:1270px;margin:auto;display:flex;gap:12px;align-items:center}.brand-icon{border:2px solid #64d7dc;border-radius:12px;color:#64d7dc;font-weight:900;font-size:27px;display:grid;place-items:center;width:46px;height:46px}.eyebrow{letter-spacing:.12em;color:#a8c9d5;font-size:11px;margin:0 0 3px}.topbar h1{font-size:19px;margin:0;font-weight:850;letter-spacing:.01em}.version{font-size:10px;border:1px solid #55738a;padding:2px 6px;vertical-align:middle;border-radius:20px;color:#a5cfda}.shell{max-width:1320px;margin:auto;padding:28px 24px 60px}.intro{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:22px}.intro h2{font-size:22px;line-height:1.35;margin:0 0 7px;letter-spacing:-.03em}.intro p{color:var(--muted);margin:0;font-size:13px}.small-tag{white-space:nowrap;font-size:11px;background:#dfedf3;color:#387188;padding:8px 14px;border-radius:20px;font-weight:850}.workspace{display:grid;grid-template-columns:minmax(330px,410px) minmax(0,1fr);gap:22px;align-items:start}.sidebar,.results{display:grid;gap:20px}.panel{border:1px solid #e4edf2;border-radius:21px;background:#fff;padding:22px;box-shadow:0 8px 24px rgba(18,44,64,.05)}.panel-title{display:flex;align-items:center;gap:10px}.panel-title h3{font-size:17px;margin:0;font-weight:850}.step{background:#e7f7fa;color:#05889f;font-size:11px;font-weight:900;width:28px;height:28px;border-radius:9px;display:grid;place-items:center}.field{display:flex;flex-direction:column;gap:8px;margin-top:18px;font-weight:750;font-size:13px}.field span{display:block}.field small{float:right;color:#94a6b1;font-weight:500}.field input,.field textarea{padding:13px 14px;border-radius:12px;border:1px solid var(--line);outline:0;background:#f8fbfc;width:100%;font-size:15px;color:#183548}.field input:focus,#template:focus{border-color:#22adc5;box-shadow:0 0 0 3px #d9f3f7}.field em{font-style:normal;color:#81929d;font-size:10px;line-height:1.5}.segmented{display:flex;gap:7px;background:#eff4f6;padding:5px;border-radius:12px}.seg{flex:1;border:0;background:none;border-radius:9px;padding:11px 7px;color:#7e909d;font-weight:800;cursor:pointer;font-size:13px}.seg.active{background:#fff;color:#078dab;box-shadow:0 2px 8px #112e3e19}.info-row{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;color:#407589;font-size:11px;margin-top:9px;font-weight:800}.fixed-coverage{margin-top:18px;background:#f0f9fb;padding:13px 14px;border-radius:12px;font-size:12px;color:#537e8b;display:flex;align-items:center;gap:7px;flex-wrap:wrap}.fixed-coverage strong{font-size:19px;color:#0d7995}.fixed-coverage span{flex-basis:100%;color:#839ca8;font-size:10px}.status{margin-top:13px;font-size:12px;color:#157963;line-height:1.55;padding:12px;background:#e9f8f2;border-radius:11px}.status.error{background:#fff1e9;color:#ad4a21}.source-note{font-size:11px;color:#8ca0ae;line-height:1.7;margin:12px 2px 0}.hint{font-size:12px;color:#738796;line-height:1.6}#template{font-size:12.5px;line-height:1.75;border:1px solid var(--line);border-radius:12px;padding:15px;width:100%;min-height:215px;resize:vertical;color:#335063;background:#f8fbfc;outline:0}.token-hint{font-size:10px;line-height:1.7;color:#899ca6;overflow-wrap:anywhere}.results-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:17px}.live-dot{font-size:11px;color:#158e74;font-weight:800}.live-dot:before{content:"";display:inline-block;background:#2ccca0;width:7px;height:7px;border-radius:50%;margin-right:7px}.card-container{max-width:735px;margin:auto}.insurance-card{background:#122b45;border-radius:24px;padding:30px;overflow:hidden;color:#fff;width:100%;box-shadow:0 16px 28px rgba(21,55,75,.13)}.card-header{display:flex;justify-content:space-between;align-items:center;gap:10px}.card-brand{font-size:13px;letter-spacing:.1em;font-weight:900;color:#76d9e3}.card-brand span{letter-spacing:0;font-size:10px;font-weight:500;color:#a6bbca;margin-left:5px}.card-product{padding:6px 10px;border:1px solid #456680;border-radius:30px;color:#bedce5;font-size:11px;white-space:nowrap}.card-title{font-size:31px;font-weight:900;line-height:1.25;letter-spacing:-.04em;margin:24px 0 10px}.card-title span{color:#64d7dc;margin-left:9px}.card-meta{font-size:11px;color:#b4cbd8;line-height:1.6;padding-bottom:18px;border-bottom:1px solid #36516a}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:18px}.hero-box{border-radius:16px;background:#f9fcfd;color:#173c58;padding:20px 16px 17px;display:flex;flex-direction:column;min-height:157px}.hero-box.accent{background:#dcf8f5}.hero-label{font-size:12px;font-weight:850;line-height:1.55;min-height:38px}.hero-value{font-size:68px;line-height:1.1;letter-spacing:-.06em;font-weight:950;white-space:nowrap;margin-top:4px}.hero-box.accent .hero-value{color:#057e83}.hero-value span{font-size:18px;margin-left:4px;letter-spacing:0}.hero-note{font-size:11px;font-weight:800;color:#54788d;margin-top:auto;line-height:1.5}.hero-box.accent .hero-note{color:#287a7d}.small-title{font-size:14px;font-weight:850;color:#e3f3f7;margin:25px 0 12px}.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.perk{display:flex;flex-direction:column;gap:5px;border:1px solid #426076;background:#1b3853;border-radius:13px;padding:12px 10px 13px}.perk-icon{font-size:17px;color:#67d9de}.perk span{font-size:11px;color:#bed1dc;line-height:1.55}.perk strong{font-size:25px;line-height:1.35;font-weight:900;color:#fff;white-space:nowrap}.return-note{display:flex;align-items:center;gap:8px;border-radius:10px;margin:15px 0 19px;color:#d1e0e8;font-size:11px;line-height:1.6}.return-icon{font-size:18px;color:#6ad8d7}.premium-row{display:grid;grid-template-columns:1fr 1fr;padding:18px 0;gap:15px;border-top:1px solid #426078;border-bottom:1px solid #426078}.premium-row>div{display:flex;flex-direction:column;gap:6px}.premium-row>div+div{border-left:1px solid #426078;padding-left:20px}.premium-row span{font-size:12px;color:#a2c1ce}.premium-row strong{font-size:24px;line-height:1.25;color:#fff;font-weight:900;white-space:nowrap}.card-legal{font-size:10px;color:#a5bdcc;line-height:1.65;margin-top:17px}.card-footer{display:flex;justify-content:space-between;gap:12px;font-size:9px;color:#779eb3;margin-top:15px}.actions{display:flex;gap:10px;margin-top:16px}.actions button{flex:1}.primary-action,.secondary-action,.small-action{cursor:pointer;border-radius:11px;font-weight:800;border:0;padding:12px 16px;font-size:13px;transition:transform .15s}.primary-action:active,.secondary-action:active,.small-action:active{transform:scale(.98)}.primary-action,.small-action{color:white;background:#067fa0}.secondary-action{background:#e9f4f7;color:#116f86}.small-action{font-size:11px;padding:9px 13px;white-space:nowrap}.actions button:disabled,.small-action:disabled{opacity:.45;cursor:not-allowed}.action-status{font-size:12px;color:#0b7e6d;margin-top:10px;min-height:0}.message-preview{background:#f3f8fa;white-space:pre-wrap;font-size:13px;line-height:1.8;border-radius:12px;padding:20px;color:#3b5b6b;overflow-wrap:anywhere}.disclaimer{color:#839baa;font-size:11px;line-height:1.8;padding:0 6px}@media(max-width:990px){.workspace{grid-template-columns:1fr}.sidebar{grid-template-columns:1fr 1fr}.results{max-width:760px;margin:auto;width:100%}}@media(max-width:680px){.shell{padding:20px 10px 40px}.topbar{padding:12px 15px}.intro{padding:0 6px}.intro h2{font-size:17px}.intro p{font-size:11px}.small-tag{display:none}.sidebar{grid-template-columns:1fr;gap:12px}.panel{border-radius:16px;padding:15px}.results{gap:13px}.insurance-card{padding:20px 14px;border-radius:17px}.card-title{font-size:25px;margin:20px 0 8px}.card-brand{font-size:11px}.card-brand span{font-size:9px}.card-product{font-size:10px;padding:5px 8px}.card-meta{font-size:10px}.hero-grid{gap:8px}.hero-box{padding:13px 9px;min-height:139px}.hero-label{font-size:10px;min-height:33px}.hero-value{font-size:52px}.hero-value span{font-size:12px;margin-left:2px}.hero-note{font-size:9px}.perks{gap:6px}.perk{padding:10px 6px}.perk span{font-size:9px;min-height:25px}.perk strong{font-size:19px}.small-title{margin:18px 0 10px}.premium-row{gap:8px}.premium-row>div+div{padding-left:12px}.premium-row strong{font-size:19px}.card-legal{font-size:9px}.actions{gap:7px}.actions button{font-size:12px;padding:11px}.card-footer{font-size:8px}}@media(max-width:360px){.hero-value{font-size:44px}.hero-box{min-height:146px}.perk strong{font-size:17px}.premium-row strong{font-size:16px}}@media print{body{background:#fff}.topbar,.intro,.sidebar,.results-head,.actions,.message-preview,.disclaimer{display:none!important}.workspace{display:block}.results .panel{box-shadow:none;border:0;padding:0}.insurance-card{box-shadow:none;print-color-adjust:exact;-webkit-print-color-adjust:exact}}
 
+/* v1.1 editable coverage and accessible quick-insert token buttons */
+.coverage-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:#f8fbfc;overflow:hidden}
+.coverage-input input{border:0!important;border-radius:0!important;box-shadow:none!important;min-width:0;flex:1;font-weight:850;font-size:21px;padding:12px 14px}
+.coverage-input>span{flex:none;color:#597e8b;font-size:13px;padding:0 16px;font-weight:800}
+.tokens-title{color:#456c80;font-weight:850;font-size:12px;margin:15px 0 9px}
+.token-buttons{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.token-buttons button{border:1px solid #c3e3ed;border-radius:9px;background:#eaf8fb;color:#136f85;padding:8px 10px;font-size:12px;font-weight:800;cursor:pointer;touch-action:manipulation;transition:background .15s}
+.token-buttons button:hover{background:#d8f1f7}
+.token-buttons button:active{transform:translateY(1px)}
+.token-buttons button:focus-visible{outline:2px solid #0b8dad;outline-offset:2px}
+.hero-value b{font:inherit;font-weight:950}
+@media(max-width:680px){.token-buttons{gap:6px}.token-buttons button{padding:9px 10px;font-size:12px}.coverage-input input{font-size:20px}}
+
 </style>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>window.__embeddedRates={"source":"建議書1150824","premiumPer10k":{"CLX":{"10":{"18":435,"19":440,"20":445,"21":450,"22":455,"23":460,"24":465,"25":470,"26":480,"27":490,"28":500,"29":510,"30":515,"31":525,"32":535,"33":545,"34":555,"35":565,"36":575,"37":580,"38":590,"39":600,"40":610,"41":620,"42":630,"43":640,"44":650,"45":660,"46":670,"47":680,"48":690,"49":700,"50":710,"51":720,"52":730,"53":740,"54":755,"55":765,"56":780,"57":795,"58":825,"59":845,"60":880},"20":{"18":230,"19":235,"20":240,"21":245,"22":250,"23":255,"24":260,"25":265,"26":270,"27":275,"28":280,"29":285,"30":290,"31":295,"32":300,"33":310,"34":315,"35":325,"36":330,"37":335,"38":345,"39":350,"40":355,"41":365,"42":370,"43":380,"44":390,"45":400,"46":410,"47":420,"48":435,"49":450,"50":470}},"CLZ":{"10":{"18":420,"19":430,"20":439,"21":450,"22":461,"23":472,"24":483,"25":494,"26":504,"27":515,"28":526,"29":537,"30":548,"31":562,"32":576,"33":590,"34":604,"35":618,"36":632,"37":646,"38":660,"39":674,"40":688,"41":705,"42":721,"43":738,"44":755,"45":772,"46":788,"47":805,"48":822,"49":838,"50":855,"51":888,"52":922,"53":955,"54":988,"55":1022,"56":1055,"57":1088,"58":1121,"59":1155,"60":1188},"20":{"18":222,"19":228,"20":233,"21":239,"22":246,"23":252,"24":258,"25":265,"26":271,"27":277,"28":283,"29":290,"30":296,"31":306,"32":315,"33":325,"34":334,"35":344,"36":354,"37":363,"38":373,"39":382,"40":392,"41":412,"42":433,"43":453,"44":473,"45":494,"46":514,"47":534,"48":554,"49":575,"50":595}}}};</script>
@@ -18,11 +31,33 @@
 (() => {
   'use strict';
   const $ = (id) => document.getElementById(id);
-  const state = {gender:'female', term:20, rates:null, valid:false, age:null, annual:null, total:null, templateTouched:false};
+  const state = {gender:'female', term:20, coverageWan:100, rates:null, valid:false, age:null, annual:null, total:null, templateTouched:false};
   const money = n => 'NT$ ' + new Intl.NumberFormat('zh-TW',{maximumFractionDigits:0}).format(n);
+  // The proposal workbooks quote insurance amounts in ten-thousand NTD units.
+  const wanNumber = n => new Intl.NumberFormat('zh-TW',{maximumFractionDigits:2}).format(Math.round((n+Number.EPSILON)*100)/100);
+  const benefit = factor => `${wanNumber(state.coverageWan*factor)}萬元`;
+  const coverageIsValid = n => Number.isInteger(n)&&n>=50&&n<=300;
+  const displayCoverage = () => coverageIsValid(state.coverageWan)?`${wanNumber(state.coverageWan)}萬元`:'待確認';
   const config = () => state.gender === 'female' ? {code:'CLX',name:'真馨相守',title:'真馨相守 CLX',salutation:'女士'} : {code:'CLZ',name:'豪愛無憂',title:'豪愛無憂 CLZ',salutation:'先生'};
   const esc = s => (s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  const templateDefault = `您好！\n\n為您整理一份「{PRODUCT}」癌症保障摘要：\n\n✅ 首次罹患癌症（重度）：第2保單年度起100萬元\n✅ 首次罹患特定癌症（重度）：第6保單年度起最高合計150萬元\n✅ 初期／輕度癌症：10萬元（第2年度起）\n✅ 特定手術：2萬元；特定傷病：10萬元（第2年度起）\n\n以100萬元保額、{TERM}年繳試算：\n年繳保費 {ANNUAL}\n預計總繳 {TOTAL}\n\n身故或89歲滿期另有依條款計算之給付。\n\n提醒：癌症等待期90日、疾病等待期30日，第1保單年度癌症給付另有規定；本商品無解約金。詳細給付條件以正式保單條款及建議書為準。\n\n若您想進一步了解，我可以再為您說明。`;
+  const templateDefault = `您好！
+
+為您整理一份「{PRODUCT}」癌症保障摘要：
+
+✅ 首次罹患癌症（重度）：第2保單年度起 {CANCER}
+✅ 首次罹患特定癌症（重度）：第6保單年度起最高合計 {SPECIAL}
+✅ 初期／輕度癌症：{INITIAL}（第2年度起）
+✅ 特定手術：{SURGERY}；特定傷病：{DISEASE}（第2年度起）
+
+以保額 {COVERAGE}、{TERM}年繳試算：
+年繳保費 {ANNUAL}
+預計總繳 {TOTAL}
+
+身故或89歲滿期另有依條款計算之給付。
+
+提醒：癌症等待期90日、疾病等待期30日，第1保單年度癌症給付另有規定；特定癌症額外給付依保單年度遞增，本商品無解約金。詳細給付條件以正式保單條款及建議書為準。
+
+若您想進一步了解，我可以再為您說明。`;
   const cleanDate = str => String(str||'').replace(/\D/g,'');
   function parseBirthday(value){
     const digits=cleanDate(value);
@@ -48,10 +83,13 @@
   function compute(){
     const birthday=parseBirthday($('birthday').value);state.age=birthday?.insAge??null;
     const c=config();
+    const input=$('coverage').value.trim();
+    state.coverageWan=input!==''?Number(input):NaN;
+    const allowedCoverage=coverageIsValid(state.coverageWan);
     const max=state.term===20?50:60;
     const rate=state.rates?.premiumPer10k?.[c.code]?.[String(state.term)]?.[String(state.age)];
-    state.valid=Boolean(birthday&&birthday.age>=18&&state.age>=18&&state.age<=max&&typeof rate==='number'&&Number.isFinite(rate));
-    state.annual=state.valid?rate*100:null; // Fixed NT$1,000,000 = 100 units of NT$10,000
+    state.valid=Boolean(birthday&&birthday.age>=18&&state.age>=18&&state.age<=max&&allowedCoverage&&typeof rate==='number'&&Number.isFinite(rate));
+    state.annual=state.valid?rate*state.coverageWan:null; // Premium per NT$10,000 × units in wan
     state.total=state.valid?state.annual*state.term:null;
     const name=$('name').value.trim()||'示範客戶';
     document.querySelectorAll('[data-gender]').forEach(el=>el.classList.toggle('active',el.dataset.gender===state.gender));
@@ -59,8 +97,14 @@
     $('ageLabel').textContent=state.age===null?'保險年齡：請輸入生日':`保險年齡：${state.age}歲`;
     $('productLabel').textContent=c.title;
     $('cardProduct').textContent=`${c.code} ${c.name}`;
-    $('cardMeta').textContent=`${name}｜${state.gender==='female'?'女性':'男性'}｜${state.age===null?'—':state.age+'歲'}｜${state.term}年繳｜以100萬元保額試算`;
-    $('cardSource').textContent=`${c.code} ${c.name}｜100萬元保額`;
+    $('cardMeta').textContent=`${name}｜${state.gender==='female'?'女性':'男性'}｜${state.age===null?'—':state.age+'歲'}｜${state.term}年繳｜以${displayCoverage()}保額試算`;
+    $('cardSource').textContent=`${c.code} ${c.name}｜${displayCoverage()}保額`;
+    $('cardCancerNum').textContent=allowedCoverage?wanNumber(state.coverageWan):'—';
+    $('cardSpecialNum').textContent=allowedCoverage?wanNumber(state.coverageWan*1.5):'—';
+    $('cardSpecialLegal').textContent=allowedCoverage?benefit(1.5):'待確認';
+    $('cardInitial').textContent=allowedCoverage?benefit(.10):'—';
+    $('cardSurgery').textContent=allowedCoverage?benefit(.02):'—';
+    $('cardDisease').textContent=allowedCoverage?benefit(.10):'—';
     $('cardAnnual').textContent=state.valid?money(state.annual):'待確認';
     $('cardTotal').textContent=state.valid?money(state.total):'待確認';
     $('copyImage').disabled=!state.valid;
@@ -68,6 +112,7 @@
     $('copyText').disabled=!state.valid;
     const status=$('status');status.classList.toggle('error',!state.valid);
     if(!state.rates) status.textContent='費率載入中，暫不提供試算或複製。';
+    else if(!allowedCoverage) status.textContent='保額須介於50～300萬元，且以1萬元為單位（請輸入整數）。';
     else if(!birthday) status.textContent='請輸入有效生日（例：0850801），完成後即可自動計算。';
     else if(birthday.age<18) status.textContent='須年滿18足歲方符合投保年齡。';
     else if(state.age>max) status.textContent=`${state.term}年繳的建議書費率適用保險年齡18～${max}歲；請選擇符合的繳費年期。`;
@@ -79,7 +124,8 @@
   }
   function generateMessage(){
     const c=config(),name=$('name').value.trim();
-    const vars={NAME:name||'您好',AGE:state.age??'—',PRODUCT:`${c.name}（${c.code}）`,ANNUAL:state.valid?money(state.annual):'待確認',TOTAL:state.valid?money(state.total):'待確認',TERM:state.term,SPECIAL:'150萬元',SURGERY:'2萬元',DISEASE:'10萬元',CANCER:'100萬元',SALUTATION:c.salutation};
+    const known=coverageIsValid(state.coverageWan);
+    const vars={NAME:name||'客戶',AGE:state.age===null?'待確認':`${state.age}歲`,PRODUCT:`${c.name}（${c.code}）`,COVERAGE:displayCoverage(),ANNUAL:state.valid?money(state.annual):'待確認',TOTAL:state.valid?money(state.total):'待確認',TERM:state.term,INITIAL:known?benefit(.10):'待確認',SPECIAL:known?benefit(1.5):'待確認',SURGERY:known?benefit(.02):'待確認',DISEASE:known?benefit(.10):'待確認',CANCER:known?benefit(1):'待確認',SALUTATION:c.salutation};
     let text=$('template').value;
     return text.replace(/\{([A-Z]+)\}/g,(match,key)=>Object.prototype.hasOwnProperty.call(vars,key)?String(vars[key]):match).replace(/^您好！/,'您好！');
   }
@@ -129,9 +175,24 @@
   }
   function init(){
     $('template').value=templateDefault;
+    // Preserve the text cursor even when the user clicks a token button outside the textarea.
+    const editor=$('template');
+    let caretStart=editor.value.length, caretEnd=editor.value.length;
+    const rememberCaret=()=>{caretStart=editor.selectionStart;caretEnd=editor.selectionEnd;};
+    ['keyup','click','select','input','mouseup','touchend'].forEach(event=>editor.addEventListener(event,rememberCaret));
+    document.querySelectorAll('[data-token]').forEach(btn=>{
+      btn.addEventListener('mousedown',event=>event.preventDefault());
+      btn.addEventListener('click',()=>{
+        const placeholder=`{${btn.dataset.token}}`;
+        editor.focus();
+        editor.setRangeText(placeholder,caretStart,caretEnd,'end');
+        rememberCaret();
+        editor.dispatchEvent(new Event('input',{bubbles:true}));
+      });
+    });
     document.querySelectorAll('[data-gender]').forEach(btn=>btn.addEventListener('click',()=>{state.gender=btn.dataset.gender;compute();}));
     document.querySelectorAll('[data-term]').forEach(btn=>btn.addEventListener('click',()=>{state.term=Number(btn.dataset.term);compute();}));
-    $('name').addEventListener('input',compute);$('birthday').addEventListener('input',compute);
+    $('name').addEventListener('input',compute);$('birthday').addEventListener('input',compute);$('coverage').addEventListener('input',compute);
     $('template').addEventListener('input',()=>{state.templateTouched=true;$('messagePreview').textContent=generateMessage();});
     $('copyText').addEventListener('click',copyText);$('copyImage').addEventListener('click',copyImage);$('downloadImage').addEventListener('click',downloadImage);
     compute();
@@ -147,7 +208,7 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="topbar-inner"><div class="brand-icon">+</div><div><p class="eyebrow">富邦人壽｜保障視覺化</p><h1>癌症保障提案工具 <span class="version">V1.0</span></h1></div></div>
+    <div class="topbar-inner"><div class="brand-icon">+</div><div><p class="eyebrow">富邦人壽｜保障視覺化</p><h1>癌症保障提案工具 <span class="version">V1.1</span></h1></div></div>
   </header>
   <main class="shell">
     <div class="intro"><div><h2>把複雜條款，整理成客戶看得懂的保障重點。</h2><p>選擇客戶資料，即時產出一張 LINE 可用圖卡與對應的說明文案。</p></div><div class="small-tag">CLX / CLZ</div></div>
@@ -160,15 +221,30 @@
           <label class="field"><span>出生年月日 <small>民國6／7碼、西元8碼</small></span><input id="birthday" inputmode="numeric" maxlength="10" value="0850801" placeholder="例如 0850801" autocomplete="off"/><em>範例：0850801（民國85年8月1日），也可輸入 19960801。</em></label>
           <div class="info-row"><span id="ageLabel">保險年齡：計算中</span><span id="productLabel">真馨相守 CLX</span></div>
           <div class="field"><span>繳費年期</span><div class="segmented" role="group" aria-label="繳費年期"><button type="button" class="seg" data-term="10">10年繳</button><button type="button" class="seg active" data-term="20">20年繳</button></div></div>
-          <div class="fixed-coverage">試算額度 <strong>100萬元</strong><span>示範保額，不需自行換算保障數字</span></div>
+          <label class="field coverage-field" for="coverage"><span>試算保額 <small>單位：萬元</small></span><div class="coverage-input"><input id="coverage" type="number" inputmode="numeric" min="50" max="300" step="1" value="100" aria-describedby="coverageHint"/><span>萬元</span></div><em id="coverageHint">預設100萬元，可自行更改；依建議書限50～300萬元，以1萬元為單位。</em></label>
           <div id="status" class="status" role="status" aria-live="polite">載入費率中…</div>
           <p class="source-note">保費以115/08/24版 CLX、CLZ 建議書之標準年繳費率計算，未計任何折扣；實際投保以公司正式建議書及核保結果為準。</p>
         </div>
         <div class="panel">
           <div class="panel-title"><span class="step">02</span><h3>客戶訊息編輯</h3></div>
           <p class="hint">文案可以自由修改；預覽會自動代入客戶資訊與保費。</p>
+          <div class="tokens-title">點一下就插入到文案游標位置</div>
+          <div class="token-buttons" id="tokenButtons" role="group" aria-label="快速插入文案變數">
+            <button type="button" data-token="NAME">客戶姓名</button>
+            <button type="button" data-token="AGE">保險年齡</button>
+            <button type="button" data-token="PRODUCT">商品名稱</button>
+            <button type="button" data-token="COVERAGE">試算保額</button>
+            <button type="button" data-token="CANCER">重度癌症</button>
+            <button type="button" data-token="SPECIAL">特定重度癌症</button>
+            <button type="button" data-token="INITIAL">初期／輕度癌症</button>
+            <button type="button" data-token="SURGERY">特定手術</button>
+            <button type="button" data-token="DISEASE">特定傷病</button>
+            <button type="button" data-token="ANNUAL">年繳保費</button>
+            <button type="button" data-token="TOTAL">總繳保費</button>
+            <button type="button" data-token="TERM">繳費年期</button>
+          </div>
           <textarea id="template" spellcheck="false" rows="12" aria-label="客戶推廣文案模板"></textarea>
-          <p class="token-hint">可用變數：{NAME} {AGE} {PRODUCT} {ANNUAL} {TOTAL} {TERM} {SPECIAL}</p>
+          <p class="token-hint">以上按鈕會插入動態欄位，修改客戶資料或保額後，文案預覽與圖卡會一起更新。</p>
         </div>
       </section>
       <section class="results" aria-label="保障圖卡與訊息預覽">
@@ -179,12 +255,12 @@
               <div class="card-header"><div class="card-brand">FUBON LIFE <span>保障規劃示意</span></div><div id="cardProduct" class="card-product">CLX 真馨相守</div></div>
               <div class="card-title">癌症保障<span>一眼看懂</span></div>
               <div id="cardMeta" class="card-meta">示範客戶｜女性｜30歲｜20年繳｜以100萬元保額試算</div>
-              <div class="hero-grid"><div class="hero-box"><span class="hero-label">首次罹患癌症（重度）</span><div class="hero-value">100<span>萬元</span></div><span class="hero-note">第2保單年度起</span></div><div class="hero-box accent"><span class="hero-label">首次罹患特定癌症（重度）</span><div class="hero-value">150<span>萬元</span></div><span class="hero-note">第6保單年度起，最高合計</span></div></div>
+              <div class="hero-grid"><div class="hero-box"><span class="hero-label">首次罹患癌症（重度）</span><div class="hero-value"><b id="cardCancerNum">100</b><span>萬元</span></div><span class="hero-note">第2保單年度起</span></div><div class="hero-box accent"><span class="hero-label">首次罹患特定癌症（重度）</span><div class="hero-value"><b id="cardSpecialNum">150</b><span>萬元</span></div><span class="hero-note">第6保單年度起，最高合計</span></div></div>
               <div class="small-title">還有這些保障</div>
-              <div class="perks"><div class="perk"><div class="perk-icon">✦</div><span>初期／輕度癌症</span><strong>10萬元</strong></div><div class="perk"><div class="perk-icon">✚</div><span>特定手術</span><strong>2萬元</strong></div><div class="perk"><div class="perk-icon">✧</div><span>特定傷病</span><strong>10萬元</strong></div></div>
+              <div class="perks"><div class="perk"><div class="perk-icon">✦</div><span>初期／輕度癌症</span><strong id="cardInitial">10萬元</strong></div><div class="perk"><div class="perk-icon">✚</div><span>特定手術</span><strong id="cardSurgery">2萬元</strong></div><div class="perk"><div class="perk-icon">✧</div><span>特定傷病</span><strong id="cardDisease">10萬元</strong></div></div>
               <div class="return-note"><span class="return-icon">♡</span><span>身故或保險年齡屆滿89歲，另有依條款計算之給付</span></div>
               <div class="premium-row"><div><span>年繳保費</span><strong id="cardAnnual">NT$ 29,000</strong></div><div><span>預計總繳保費</span><strong id="cardTotal">NT$ 580,000</strong></div></div>
-              <div class="card-legal">*初期／輕度癌症及特定傷病10萬元為第2保單年度起；特定手術依條款。癌症等待期90日、疾病等待期30日。第1保單年度癌症給付另有規定；特定癌症加給依保單年度遞增，第6年度起最高合計150萬元。無解約金；身故／滿期給付須扣除依條款應申領的保險金。<br/>本圖僅為保額100萬元之摘要示意，給付條件、除外責任及實際費率以正式保單條款、建議書與核保結果為準。</div>
+              <div class="card-legal">*初期／輕度癌症及特定傷病給付為第2保單年度起；特定手術依條款。癌症等待期90日、疾病等待期30日。第1保單年度癌症給付另有規定；特定癌症加給依保單年度遞增，第6年度起最高合計<span id="cardSpecialLegal">150萬元</span>。無解約金；身故／滿期給付須扣除依條款應申領的保險金。<br/>本圖僅為上述試算保額之摘要示意，給付條件、除外責任及實際費率以正式保單條款、建議書與核保結果為準。</div>
               <div class="card-footer"><span id="cardSource">CLX 真馨相守｜100萬元保額</span><span>FUBON LIFE · 商品摘要</span></div>
             </article>
           </div>
