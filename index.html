@@ -91,9 +91,9 @@ button,input,textarea{font:inherit}
 .focus-strip{margin-top:16px;padding:16px 0 2px}
 .focus-strip-title{font-size:13px;color:#536f80;font-weight:900;margin-bottom:10px}
 .perks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.perk{border-radius:16px;background:#f5f9fb;border:1px solid #e1ebf0;padding:14px 12px 16px;display:flex;flex-direction:column;gap:6px;min-height:124px;justify-content:space-between;align-items:center;text-align:center}
+.perk{border-radius:16px;background:#f5f9fb;border:1px solid #e1ebf0;padding:12px 12px 14px;display:flex;flex-direction:column;gap:6px;min-height:124px;justify-content:flex-start;align-items:center;text-align:center}
 .perk span{font-size:11px;color:#657d8e;line-height:1.5;font-weight:800}
-.perk strong{font-size:46px;line-height:1.05;font-weight:950;color:#173b5a;letter-spacing:-.05em;white-space:nowrap;width:100%;text-align:center}
+.perk strong{font-size:46px;line-height:1.05;font-weight:950;color:#173b5a;letter-spacing:-.05em;white-space:nowrap;width:100%;text-align:center;flex:1;display:flex;align-items:center;justify-content:center}
 .return-note{display:flex;align-items:center;gap:8px;border-radius:14px;margin:15px 0 19px;background:#f7fafb;border:1px solid #e7eef1;padding:11px 14px;color:#5a7180;font-size:11px;line-height:1.6}.return-icon{font-size:18px;color:#56a8b1}
 .premium-row{display:grid;grid-template-columns:1fr 1fr;padding:18px 0;gap:15px;border-top:1px solid #e7edf0;border-bottom:1px solid #e7edf0}.premium-row>div{display:flex;flex-direction:column;gap:8px}.premium-row>div+div{border-left:1px solid #e7edf0;padding-left:20px}.premium-row span{font-size:12px;color:#718696;font-weight:800}.premium-row strong{font-size:31px;line-height:1.1;color:#18364c;font-weight:950;letter-spacing:-.04em;white-space:nowrap}
 .card-legal{font-size:11.5px;color:#5e7282;line-height:1.72;margin-top:18px}.card-footer{display:flex;justify-content:space-between;gap:12px;font-size:9px;color:#95a8b6;margin-top:15px}
@@ -135,17 +135,17 @@ button,input,textarea{font:inherit}
 .export-card .card-footer{font-size:9px!important}
 
 /* v1.2.4: separate contracted cancer coverage from the age-89 maturity formula. */
-.return-note{gap:12px;align-items:flex-start}
+.return-note{gap:12px;align-items:center}
 .return-icon{flex:0 0 auto;margin-top:1px}
-.return-content{flex:1;min-width:0}
-.return-line{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.return-content{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;min-height:62px}
+.return-line{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .return-line>span{font-size:12px;font-weight:850;color:#365168}
 .return-line>span small{font-size:10px;font-weight:600;color:#6a8190}
 .return-line strong{font-size:23px;line-height:1.2;font-weight:950;color:#0b7285;white-space:nowrap;letter-spacing:-.03em}
 .return-formula{font-size:10.5px;line-height:1.6;color:#627988;margin-top:3px}
-@media(max-width:720px){.return-line strong{font-size:20px}.return-line{gap:4px}.return-note{padding:10px 11px}}
+@media(max-width:720px){.return-line strong{font-size:20px}.return-line{gap:4px}.return-note{padding:10px 11px}.return-content{min-height:56px}}
 .export-card .return-line strong{font-size:23px!important}
-.export-card .return-note{padding:11px 14px!important}
+.export-card .return-note{padding:11px 14px!important;align-items:center!important}.export-card .return-content{min-height:62px!important}.export-card .return-line{align-items:center!important}
 </style>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>window.__RATES = {
@@ -331,6 +331,7 @@ button,input,textarea{font:inherit}
   const money = n => 'NT$ ' + new Intl.NumberFormat('zh-TW',{maximumFractionDigits:0}).format(n);
   const wanNumber = n => new Intl.NumberFormat('zh-TW',{maximumFractionDigits:2}).format(Math.round((n+Number.EPSILON)*100)/100);
   const benefit = factor => `${wanNumber(state.coverageWan*factor)}萬元`;
+  const maturityText = () => state.valid ? `${Math.round(state.maturity/10000)}萬元` : '待確認';
   const coverageIsValid = n => Number.isInteger(n)&&n>=50&&n<=300;
   const displayCoverage = () => coverageIsValid(state.coverageWan)?`${wanNumber(state.coverageWan)}萬元`:'待確認';
   const config = () => state.gender === 'female' ? {code:'CLX',name:'真馨相守',title:'真馨相守 CLX',salutation:'女士'} : {code:'CLZ',name:'豪愛無憂',title:'豪愛無憂 CLZ',salutation:'先生'};
@@ -487,7 +488,7 @@ button,input,textarea{font:inherit}
   function generateMessage(){
     const c=config(),name=$('name').value.trim();
     const known=coverageIsValid(state.coverageWan);
-    const vars={NAME:name||'客戶',AGE:state.age===null?'待確認':`${state.age}歲`,PRODUCT:`${c.name}（${c.code}）`,COVERAGE:displayCoverage(),ANNUAL:state.valid?money(state.annual):'待確認',TOTAL:state.valid?money(state.total):'待確認',MATURITY:state.valid?money(state.maturity):'待確認',TERM:state.term,INITIAL:known?benefit(.10):'待確認',SPECIAL:known?benefit(1.5):'待確認',SURGERY:known?benefit(.02):'待確認',DISEASE:known?benefit(.10):'待確認',CANCER:known?benefit(1):'待確認',SALUTATION:c.salutation};
+    const vars={NAME:name||'客戶',AGE:state.age===null?'待確認':`${state.age}歲`,PRODUCT:`${c.name}（${c.code}）`,COVERAGE:displayCoverage(),ANNUAL:state.valid?money(state.annual):'待確認',TOTAL:state.valid?money(state.total):'待確認',MATURITY:maturityText(),TERM:state.term,INITIAL:known?benefit(.10):'待確認',SPECIAL:known?benefit(1.5):'待確認',SURGERY:known?benefit(.02):'待確認',DISEASE:known?benefit(.10):'待確認',CANCER:known?benefit(1):'待確認',SALUTATION:c.salutation};
     let text=$('template').value;
     return text.replace(/\{([A-Z]+)\}/g,(match,key)=>Object.prototype.hasOwnProperty.call(vars,key)?String(vars[key]):match).replace(/^您好！/,'您好！');
   }
@@ -615,7 +616,7 @@ button,input,textarea{font:inherit}
       <div class="brand-icon">+</div>
       <div>
         <p class="eyebrow">富邦人壽｜保障視覺化</p>
-        <h1>癌症保障提案工具 <span class="version">V1.2.4</span></h1>
+        <h1>癌症保障提案工具 <span class="version">V1.2.5</span></h1>
       </div>
     </div>
   </header>
