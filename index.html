@@ -133,6 +133,19 @@ button,input,textarea{font:inherit}
 .export-card .premium-row strong{font-size:28px!important}
 .export-card .card-legal{font-size:11px!important;line-height:1.66!important}
 .export-card .card-footer{font-size:9px!important}
+
+/* v1.2.4: separate contracted cancer coverage from the age-89 maturity formula. */
+.return-note{gap:12px;align-items:flex-start}
+.return-icon{flex:0 0 auto;margin-top:1px}
+.return-content{flex:1;min-width:0}
+.return-line{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.return-line>span{font-size:12px;font-weight:850;color:#365168}
+.return-line>span small{font-size:10px;font-weight:600;color:#6a8190}
+.return-line strong{font-size:23px;line-height:1.2;font-weight:950;color:#0b7285;white-space:nowrap;letter-spacing:-.03em}
+.return-formula{font-size:10.5px;line-height:1.6;color:#627988;margin-top:3px}
+@media(max-width:720px){.return-line strong{font-size:20px}.return-line{gap:4px}.return-note{padding:10px 11px}}
+.export-card .return-line strong{font-size:23px!important}
+.export-card .return-note{padding:11px 14px!important}
 </style>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>window.__RATES = {
@@ -314,7 +327,7 @@ button,input,textarea{font:inherit}
     template: 'clx_clz_template_v2',
     profile: 'clx_clz_profile_v2'
   };
-  const state = {gender:'female', term:20, coverageWan:100, rates:null, valid:false, age:null, annual:null, total:null, templateTouched:false};
+  const state = {gender:'female', term:20, coverageWan:100, rates:null, valid:false, age:null, annual:null, total:null, maturity:null, templateTouched:false};
   const money = n => 'NT$ ' + new Intl.NumberFormat('zh-TW',{maximumFractionDigits:0}).format(n);
   const wanNumber = n => new Intl.NumberFormat('zh-TW',{maximumFractionDigits:2}).format(Math.round((n+Number.EPSILON)*100)/100);
   const benefit = factor => `${wanNumber(state.coverageWan*factor)}萬元`;
@@ -363,7 +376,7 @@ button,input,textarea{font:inherit}
         if(savedProfile.term===10 || savedProfile.term===20 || savedProfile.term==='10' || savedProfile.term==='20') state.term = Number(savedProfile.term);
       }
       const savedTemplate = localStorage.getItem(STORAGE_KEYS.template);
-      if(savedTemplate && typeof savedTemplate === 'string'){
+      if(savedTemplate !== null && typeof savedTemplate === 'string'){
         $('template').value = savedTemplate;
         state.templateTouched = true;
         setDraftStatus('已載入你上次編輯的文案草稿');
@@ -434,6 +447,9 @@ button,input,textarea{font:inherit}
     state.valid=Boolean(birthday&&birthday.age>=18&&state.age>=18&&state.age<=max&&allowedCoverage&&typeof rate==='number'&&Number.isFinite(rate));
     state.annual=state.valid?rate*state.coverageWan:null;
     state.total=state.valid?state.annual*state.term:null;
+    // CLX/CLZ Article 2: age-89 maturity before claim offsets uses annual standard premium × premium term × 1.06.
+    // This is NOT the cancer sum insured: cancer benefits remain tied to the contracted coverage.
+    state.maturity=state.valid?Math.round(state.total*1.06):null;
     const name=$('name').value.trim()||'示範客戶';
     document.querySelectorAll('[data-gender]').forEach(el=>el.classList.toggle('active',el.dataset.gender===state.gender));
     document.querySelectorAll('[data-term]').forEach(el=>el.classList.toggle('active',Number(el.dataset.term)===state.term));
@@ -450,6 +466,8 @@ button,input,textarea{font:inherit}
     $('cardDisease').textContent=allowedCoverage?benefit(.10):'—';
     $('cardAnnual').textContent=state.valid?money(state.annual):'待確認';
     $('cardTotal').textContent=state.valid?money(state.total):'待確認';
+    $('cardMaturity').textContent=state.valid?money(state.maturity):'待確認';
+    $('cardMaturityFormula').textContent=state.valid?`年繳標準保費 × ${state.term}年 × 1.06；曾有應申領保險金須扣除，身故另依事故年度計算。`:'按條款計算，需先輸入有效試算資料。';
     $('copyImage').disabled=!state.valid;
     $('downloadImage').disabled=!state.valid;
     $('copyText').disabled=!state.valid;
@@ -469,7 +487,7 @@ button,input,textarea{font:inherit}
   function generateMessage(){
     const c=config(),name=$('name').value.trim();
     const known=coverageIsValid(state.coverageWan);
-    const vars={NAME:name||'客戶',AGE:state.age===null?'待確認':`${state.age}歲`,PRODUCT:`${c.name}（${c.code}）`,COVERAGE:displayCoverage(),ANNUAL:state.valid?money(state.annual):'待確認',TOTAL:state.valid?money(state.total):'待確認',TERM:state.term,INITIAL:known?benefit(.10):'待確認',SPECIAL:known?benefit(1.5):'待確認',SURGERY:known?benefit(.02):'待確認',DISEASE:known?benefit(.10):'待確認',CANCER:known?benefit(1):'待確認',SALUTATION:c.salutation};
+    const vars={NAME:name||'客戶',AGE:state.age===null?'待確認':`${state.age}歲`,PRODUCT:`${c.name}（${c.code}）`,COVERAGE:displayCoverage(),ANNUAL:state.valid?money(state.annual):'待確認',TOTAL:state.valid?money(state.total):'待確認',MATURITY:state.valid?money(state.maturity):'待確認',TERM:state.term,INITIAL:known?benefit(.10):'待確認',SPECIAL:known?benefit(1.5):'待確認',SURGERY:known?benefit(.02):'待確認',DISEASE:known?benefit(.10):'待確認',CANCER:known?benefit(1):'待確認',SALUTATION:c.salutation};
     let text=$('template').value;
     return text.replace(/\{([A-Z]+)\}/g,(match,key)=>Object.prototype.hasOwnProperty.call(vars,key)?String(vars[key]):match).replace(/^您好！/,'您好！');
   }
@@ -597,7 +615,7 @@ button,input,textarea{font:inherit}
       <div class="brand-icon">+</div>
       <div>
         <p class="eyebrow">富邦人壽｜保障視覺化</p>
-        <h1>癌症保障提案工具 <span class="version">V1.2.3</span></h1>
+        <h1>癌症保障提案工具 <span class="version">V1.2.4</span></h1>
       </div>
     </div>
   </header>
@@ -621,7 +639,7 @@ button,input,textarea{font:inherit}
           <div class="field"><span>繳費年期</span><div class="segmented" role="group" aria-label="繳費年期"><button type="button" class="seg" data-term="10">10年繳</button><button type="button" class="seg active" data-term="20">20年繳</button></div></div>
           <label class="field coverage-field" for="coverage"><span>試算保額 <small>單位：萬元</small></span><div class="coverage-input"><input id="coverage" type="number" inputmode="numeric" min="50" max="300" step="1" value="100" aria-describedby="coverageHint"/><span>萬元</span></div><em id="coverageHint">預設100萬元，可自行更改；依建議書限50～300萬元，以1萬元為單位。</em></label>
           <div id="status" class="status" role="status" aria-live="polite">載入費率中…</div>
-          <p class="source-note">保費以115/08/24版 CLX、CLZ 建議書之標準年繳費率計算，未計任何折扣；實際投保以公司正式建議書及核保結果為準。</p>
+          <p class="source-note">保費以115/08/24版 CLX、CLZ 建議書之標準年繳費率計算，未計任何折扣。<strong>1.06倍適用於首年度癌症或身故／滿期的條款公式，不代表重度癌症保額隨總繳保費增加。</strong> 實際投保以公司正式建議書及核保結果為準。</p>
         </div>
 
         <div class="panel">
@@ -643,6 +661,7 @@ button,input,textarea{font:inherit}
             <button type="button" data-token="DISEASE">特定傷病</button>
             <button type="button" data-token="ANNUAL">年繳保費</button>
             <button type="button" data-token="TOTAL">總繳保費</button>
+            <button type="button" data-token="MATURITY">89歲滿期試算</button>
             <button type="button" data-token="TERM">繳費年期</button>
           </div>
           <textarea id="template" spellcheck="false" rows="12" aria-label="客戶推廣文案模板"></textarea>
@@ -692,14 +711,20 @@ button,input,textarea{font:inherit}
                 </div>
               </div>
 
-              <div class="return-note"><span class="return-icon">♡</span><span>身故或保險年齡屆滿89歲，另有依條款計算之給付</span></div>
+              <div class="return-note">
+                <span class="return-icon" aria-hidden="true">♡</span>
+                <div class="return-content">
+                  <div class="return-line"><span>保險年齡89歲滿期試算 <small>（假設無應申領保險金）</small></span><strong id="cardMaturity">NT$ 614,800</strong></div>
+                  <div class="return-formula" id="cardMaturityFormula">年繳標準保費 × 20年 × 1.06；曾有應申領保險金須扣除，身故另依事故年度計算。</div>
+                </div>
+              </div>
 
               <div class="premium-row">
                 <div><span>年繳保費</span><strong id="cardAnnual">NT$ 29,000</strong></div>
                 <div><span>預計總繳保費</span><strong id="cardTotal">NT$ 580,000</strong></div>
               </div>
 
-              <div class="card-legal">* 初期／輕度癌症及特定傷病給付為第2保單年度起；特定手術依條款。癌症等待期90日、疾病等待期30日。第1保單年度癌症給付另有規定；特定癌症加給依保單年度遞增，第6年度起最高合計<span id="cardSpecialLegal">150萬元</span>（已含一般重度癌症給付，並非兩者相加）。無解約金；身故／滿期給付須扣除依條款應申領的保險金。<br/>本圖僅為上述試算保額之摘要示意，給付條件、除外責任及實際費率以正式保單條款、建議書與核保結果為準。</div>
+              <div class="card-legal">* 初期／輕度癌症及特定傷病給付為第2保單年度起；特定手術依條款。癌症等待期90日、疾病等待期30日。第1保單年度癌症給付另有規定；特定癌症加給依保單年度遞增，第6年度起最高合計<span id="cardSpecialLegal">150萬元</span>（已含一般重度癌症給付，並非兩者相加）。第1年度首次癌症給付按年繳標準保費×1.06（非20年總繳保費×1.06）。身故／滿期依標準年繳費×條款計算年度數×1.06，再扣除應申領之各項保險金。無解約金。<br/>本圖僅為上述試算保額之摘要示意，給付條件、除外責任及實際費率以正式保單條款、建議書與核保結果為準。</div>
               <div class="card-footer"><span id="cardSource">CLX 真馨相守｜100萬元保額</span><span>富邦人壽 · 保障重點摘要</span></div>
             </article>
           </div>
