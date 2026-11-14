@@ -488,7 +488,7 @@ button,input,textarea{font:inherit}
   function generateMessage(){
     const c=config(),name=$('name').value.trim();
     const known=coverageIsValid(state.coverageWan);
-    const vars={NAME:name||'客戶',AGE:state.age===null?'待確認':`${state.age}歲`,PRODUCT:`${c.name}（${c.code}）`,COVERAGE:displayCoverage(),ANNUAL:state.valid?money(state.annual):'待確認',TOTAL:state.valid?money(state.total):'待確認',MATURITY:maturityText(),TERM:state.term,INITIAL:known?benefit(.10):'待確認',SPECIAL:known?benefit(1.5):'待確認',SURGERY:known?benefit(.02):'待確認',DISEASE:known?benefit(.10):'待確認',CANCER:known?benefit(1):'待確認',SALUTATION:c.salutation};
+    const vars={NAME:name||'客戶',AGE:state.age===null?'待確認':`${state.age}歲`,GENDER:state.gender==='female'?'女性':'男性',PRODUCT:`${c.name}（${c.code}）`,COVERAGE:displayCoverage(),ANNUAL:state.valid?money(state.annual):'待確認',TOTAL:state.valid?money(state.total):'待確認',MATURITY:maturityText(),TERM:state.term,INITIAL:known?benefit(.10):'待確認',SPECIAL:known?benefit(1.5):'待確認',SURGERY:known?benefit(.02):'待確認',DISEASE:known?benefit(.10):'待確認',CANCER:known?benefit(1):'待確認',SALUTATION:c.salutation};
     let text=$('template').value;
     return text.replace(/\{([A-Z]+)\}/g,(match,key)=>Object.prototype.hasOwnProperty.call(vars,key)?String(vars[key]):match).replace(/^您好！/,'您好！');
   }
@@ -616,7 +616,7 @@ button,input,textarea{font:inherit}
       <div class="brand-icon">+</div>
       <div>
         <p class="eyebrow">富邦人壽｜保障視覺化</p>
-        <h1>癌症保障提案工具 <span class="version">V1.2.5</span></h1>
+        <h1>癌症保障提案工具 <span class="version">V1.2.6</span></h1>
       </div>
     </div>
   </header>
@@ -653,6 +653,7 @@ button,input,textarea{font:inherit}
           <div class="token-buttons" id="tokenButtons" role="group" aria-label="快速插入文案變數">
             <button type="button" data-token="NAME">客戶姓名</button>
             <button type="button" data-token="AGE">保險年齡</button>
+            <button type="button" data-token="GENDER">性別</button>
             <button type="button" data-token="PRODUCT">商品名稱</button>
             <button type="button" data-token="COVERAGE">試算保額</button>
             <button type="button" data-token="CANCER">重度癌症</button>
