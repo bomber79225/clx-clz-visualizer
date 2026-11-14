@@ -494,8 +494,8 @@ button,input,textarea{font:inherit}
     const raw=String(fullName||'').trim();
     if(!raw)return '客戶';
     // Avoid guessing the surname for Latin, mixed-script or punctuated names.
-    if(!/^[\\p{Script=Han}\\s]+$/u.test(raw))return raw;
-    const clean=raw.replace(/\\s+/g,'');
+    if(!/^[\p{Script=Han}\s]+$/u.test(raw))return raw;
+    const clean=raw.replace(/\s+/g,'');
     const doubleSurname=DOUBLE_SURNAMES.has(clean.slice(0,2));
     const surnameLength=doubleSurname?2:1;
     const givenLength=clean.length-surnameLength;
