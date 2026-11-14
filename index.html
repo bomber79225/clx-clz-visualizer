@@ -485,10 +485,29 @@ button,input,textarea{font:inherit}
     $('textStatus').textContent='';$('imageStatus').textContent='';
     requestAnimationFrame(fitBenefitNumbers);
   }
+
+  // Address customers naturally while retaining full names on the visual insurance card.
+  // Only split common 3-character Han names and recognized double-surname names.
+  // Ambiguous names and single-character given names keep the full name.
+  const DOUBLE_SURNAMES = new Set('歐陽 司馬 諸葛 上官 夏侯 皇甫 尉遲 公孫 令狐 慕容 宇文 司徒 司空 東方 端木 南宮 百里 呼延 獨孤 軒轅 鍾離 聞人 仲孫 子車 太史 鮮于 澹臺 公冶 申屠 宗政 濮陽 太叔 淳于 單于 漆雕 樂正 公羊 穀梁 谷梁 拓跋 亓官 公良 公西 顓孫 納蘭 長孫 萬俟 万俟 微生 梁丘 左丘 東郭 西門 南門 第五 范姜 張簡 張廖'.split(' '));
+  function customerAddress(fullName){
+    const raw=String(fullName||'').trim();
+    if(!raw)return '客戶';
+    // Avoid guessing the surname for Latin, mixed-script or punctuated names.
+    if(!/^[\\p{Script=Han}\\s]+$/u.test(raw))return raw;
+    const clean=raw.replace(/\\s+/g,'');
+    const doubleSurname=DOUBLE_SURNAMES.has(clean.slice(0,2));
+    const surnameLength=doubleSurname?2:1;
+    const givenLength=clean.length-surnameLength;
+    if(givenLength<=1)return clean;  // 王傳、司馬光: don't use an awkward one-character salutation.
+    if(!doubleSurname&&clean.length!==3)return clean; // Ambiguous 4+ character Han names: preserve full name.
+    if(doubleSurname&&givenLength>3)return clean; // Very unusual lengths: avoid guessing.
+    return clean.slice(surnameLength);
+  }
   function generateMessage(){
     const c=config(),name=$('name').value.trim();
     const known=coverageIsValid(state.coverageWan);
-    const vars={NAME:name||'客戶',AGE:state.age===null?'待確認':`${state.age}歲`,GENDER:state.gender==='female'?'女性':'男性',PRODUCT:`${c.name}（${c.code}）`,COVERAGE:displayCoverage(),ANNUAL:state.valid?money(state.annual):'待確認',TOTAL:state.valid?money(state.total):'待確認',MATURITY:maturityText(),TERM:state.term,INITIAL:known?benefit(.10):'待確認',SPECIAL:known?benefit(1.5):'待確認',SURGERY:known?benefit(.02):'待確認',DISEASE:known?benefit(.10):'待確認',CANCER:known?benefit(1):'待確認',SALUTATION:c.salutation};
+    const vars={NAME:customerAddress(name),AGE:state.age===null?'待確認':`${state.age}歲`,GENDER:state.gender==='female'?'女性':'男性',PRODUCT:`${c.name}（${c.code}）`,COVERAGE:displayCoverage(),ANNUAL:state.valid?money(state.annual):'待確認',TOTAL:state.valid?money(state.total):'待確認',MATURITY:maturityText(),TERM:state.term,INITIAL:known?benefit(.10):'待確認',SPECIAL:known?benefit(1.5):'待確認',SURGERY:known?benefit(.02):'待確認',DISEASE:known?benefit(.10):'待確認',CANCER:known?benefit(1):'待確認',SALUTATION:c.salutation};
     let text=$('template').value;
     return text.replace(/\{([A-Z]+)\}/g,(match,key)=>Object.prototype.hasOwnProperty.call(vars,key)?String(vars[key]):match).replace(/^您好！/,'您好！');
   }
@@ -616,7 +635,7 @@ button,input,textarea{font:inherit}
       <div class="brand-icon">+</div>
       <div>
         <p class="eyebrow">富邦人壽｜保障視覺化</p>
-        <h1>癌症保障提案工具 <span class="version">V1.2.6</span></h1>
+        <h1>癌症保障提案工具 <span class="version">V1.2.7</span></h1>
       </div>
     </div>
   </header>
@@ -649,9 +668,9 @@ button,input,textarea{font:inherit}
             <p class="hint">文案可自由修改，系統會自動保存你最後編輯的版本。</p>
             <button id="resetTemplate" class="ghost-action" type="button">恢復預設文案</button>
           </div>
-          <div class="tokens-title">點一下就插入到文案游標位置</div>
+          <div class="tokens-title">點一下就插入到文案游標位置。「客戶名字」會智慧略姓；單字名保留全名。</div>
           <div class="token-buttons" id="tokenButtons" role="group" aria-label="快速插入文案變數">
-            <button type="button" data-token="NAME">客戶姓名</button>
+            <button type="button" data-token="NAME" title="自動略去姓氏；單字名及無法辨識的姓名保留全名">客戶名字</button>
             <button type="button" data-token="AGE">保險年齡</button>
             <button type="button" data-token="GENDER">性別</button>
             <button type="button" data-token="PRODUCT">商品名稱</button>
